@@ -17,6 +17,7 @@ class CategoryAction extends BasicAdvancedAction{
 			$info=array(
 			"id"=>$count+101,
 			"sortnum"=>($count+1)*10,
+            "state"=>1
 			);
 		}
 		$this->assign("info",$info);
@@ -138,6 +139,7 @@ class CategoryAction extends BasicAdvancedAction{
 			$info=$db->where("id={$id}")->find();
 		}else{
 			$info['sortnum']=$db->where("id like '{$pid}___'")->max("sortnum")+10;
+            $info['state']=1;
 		}
 		$info['pid']=$pid;
 		$class_name=$db->where("id={$id}")->getfield("name");
