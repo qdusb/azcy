@@ -1,0 +1,48 @@
+<include file="Public:innerHead"/>
+	<body>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+			<tr class="position">
+				<td class="position">当前位置: 管理中心 -&gt; Banner分类管理</td>
+			</tr>
+		</table>
+		<table width="98%" border="0" cellspacing="0" cellpadding="0" align="center">
+			<tr height="30">
+				<td>
+					<a href="{$freshURL}">[刷新列表]</a>&nbsp;
+					<a href="{$addURL}">[增加]</a>&nbsp;
+				</td>
+				<td align="right">
+				</td>
+			</tr>
+		</table>
+		<table width="100%" border="0" cellspacing="1" cellpadding="0" align="center" class="listTable">
+			<tr class="listHeaderTr">
+				<td>序号</td>
+				<td>分类名称</td>
+                <td>禁止增加</td>
+				<td>禁止删除</td>
+				<td>删除</td>
+			</tr>
+			<foreach name="info" item="v">
+				<tr class="listTr">
+					<td>{$v.sortnum}</td>
+					<td><a href="{:U('Banner/banner_class_edit',array('id'=>$v['id']))}">{$v.name}</a></td>
+                    <td>
+					<if condition="$v.add_deny eq 0">否
+					<else/>是
+					</if>
+                    </td>
+                    <td>
+					<if condition="$v.delete_deny eq 0">否
+					<else/>是
+					</if>
+                    </td>
+					<td><a href="{:U('Banner/banner_class_delete',array('id'=>$v['id']))}" onClick="return del();">删除</a></td>
+				</tr>
+			</foreach>
+			<tr class="listFooterTr">
+				<td colspan="10"></td>
+			</tr>
+		</table>
+	</body>
+</html>

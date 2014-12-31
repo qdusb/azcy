@@ -1,0 +1,60 @@
+<include file="Public:innerHead"/>
+	<body>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+			<tr class="position">
+				<td class="position">当前位置: 管理中心 -&gt; 高级管理 -&gt; 广告管理</td>
+			</tr>
+		</table>
+		<table width="98%" border="0" cellspacing="0" cellpadding="0" align="center">
+			<tr height="30">
+				<td>
+					<a href="{$freshURL}">[刷新列表]</a>
+					<a href="{:U('Adver/adver_edit')}">[增加]</a>
+					<a href="javascript:reverseCheck(document.form1.ids);">[反向选择]</a>&nbsp;
+					<a href="javascript:if(delCheck(document.form1.ids)) {document.form1.submit();}">[删除]</a>&nbsp;
+				</td>
+			</tr>
+		</table>
+		<form name="form1" action="{:U('Adver/adver_delete')}" method="post">
+		<input type="hidden" name="page_id" value="{$page_id}"/>
+		<table width="100%" border="0" cellspacing="1" cellpadding="0" align="center" class="listTable">
+			
+				<tr class="listHeaderTr">
+					<td width="3%"></td>
+					<td>标题名称</td>
+					<td width="8%">广告方式</td>
+					<td width="8%">宽度</td>
+					<td width="8%">高度</td>
+					<td width="8%">链接</td>
+					<td width="8%">广告文件</td>
+					<td width="8%">状态</td>
+				</tr>
+				<foreach name="info" item="v">
+					<tr class="listTr">
+						<td><input type="checkbox" id="ids" name="ids[]" value="<?=$row["id"]?>"></td>
+						<td><a href="{:U('Adver/adver_edit',array('id'=>$v['id']))}">{$v.title}</a></td>
+						<td>
+							<switch name="v.mode">
+								<case value="popup">弹出广告</case>
+								<case value="float">漂浮广告</case>
+								<case value="hangL">左侧门帘</case>
+								<case value="hangR">右侧门帘</case>
+								<case value="hangLR">左右门帘</case>
+								<case value="bigScreen">拉屏广告</case>
+								<default/><font color='#FF0000'>错误</font>
+							</switch>
+						</td>
+						<td>{$v.width}</td>
+						<td>{$v.height}</td>
+						<td><if condition="$v['url'] eq ''">无<else/>有</if></td>
+						<td><if condition="$v['pic'] eq ''">无<else/>有</if></td>
+						<td><if condition="$v['state'] eq 1">显示<else/>不显示</if></td>
+					</tr>
+				</foreach>
+				<tr class="listFooterTr">
+					<td colspan="10"><include file="Public:page"/></td>
+				</tr>
+			</table>
+		</form>
+	</body>
+</html>

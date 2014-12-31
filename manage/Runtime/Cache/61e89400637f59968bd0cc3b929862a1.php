@@ -1,0 +1,53 @@
+<?php if (!defined('THINK_PATH')) exit();?><html>
+	<head>
+		<title></title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="Pragma" content="no-cache">
+		<meta http-equiv="Cache-Control" content="no-cache">
+		<meta http-equiv="Expires" content="-1000">
+		<link href="__PUBLIC__/images/admin.css" rel="stylesheet" type="text/css">
+		<script type="text/javascript" src="__PUBLIC__/images/common.js"></script>
+		<script charset="utf-8" src="__PUBLIC__/kindeditor/kindeditor-all-min.js"></script>
+		<script charset="utf-8" src="__PUBLIC__/kindeditor/lang/zh_CN.js"></script>
+		<script>
+			KindEditor.ready(function(K) {
+				var editor = K.create('textarea[name="pic"]', {
+					uploadJson : '__PUBLIC__/kindeditor/php/upload_json.php',
+					fileManagerJson : '__PUBLIC__/kindeditor/php/file_manager_json.php',
+					width : '600px',
+					height : '300px',
+					items : ['source','image'],
+					allowFileManager : false,
+					afterCreate : function() {
+						var self = this;
+						K.ctrl(document, 13, function() {
+							self.sync();
+							K('form[name=form1]')[0].submit();
+						});
+						K.ctrl(self.edit.doc, 13, function() {
+							self.sync();
+							K('form[name=form1]')[0].submit();
+						});
+					}
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<form name="form1" action="<?php echo U('UploadFile/upload');?>" method="post" enctype="multipart/form-data">
+			<table width="100%" border="0" cellSpacing="1" cellPadding="0" align="center" class="editTable">
+				<input name="id" type="hidden" value="<?php echo ($info["id"]); ?>"/>
+				<tr class="editTr">
+					<td class="editRightTd" colSpan="2"><textarea name="pic"><?php echo ($info["pic"]); ?></textarea></td>
+				</tr>
+				<tr class="editFooterTr">
+					<td class="editFooterTd" colSpan="2">
+						<input type="submit" value=" 确 定 ">
+						<input type="reset" value=" 重 填 ">
+					</td>
+				</tr>
+			</table>
+		</form>
+		<script type="text/javascript">document.form1.title.focus();</script>
+	</body>
+</html>

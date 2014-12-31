@@ -1,0 +1,58 @@
+<include file="Public:innerHead"/>
+	<body>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+			<tr class="position">
+				<td class="position">当前位置: 管理中心 -&gt; 列表</td>
+			</tr>
+		</table>
+		<table width="98%" border="0" cellspacing="0" cellpadding="0" align="center">
+			<tr height="30">
+				<td>
+					<a href="{$freshURL}">[刷新列表]</a>
+					<a href="{$addURL}">[增加]</a>
+					<select name="select_class" onChange="window.location=this.options[this.selectedIndex].value;">
+						<foreach name="link_class" item="v">
+						<option value="{:U('Link/link_list',array('class_id'=>$v['id']))}" <if condition="$v.id eq $class_id">selected</if>>{$v.name}</option>
+						</foreach>
+					</select>
+					<a href="javascript:reverseCheck(document.form1.ids);">[反向选择]</a>&nbsp;
+					<a href="javascript:if(delCheck(document.form1.ids)) {document.form1.submit();}">[删除]</a>&nbsp;
+				</td>
+			</tr>
+		</table>
+		<form name="form1" action="{:U('Link/link_delete')}" method="post">
+		<input type="hidden" name="class_id" value="{$class_id}"/>
+		<table width="100%" border="0" cellspacing="1" cellpadding="0" align="center" class="listTable">
+                <tr class="listHeaderTr">
+                	<td width="5%"></td>
+                    <td>序号</td>
+                    <td>链接名称</td>
+                    <td>链接地址</td>
+                    <td>状态</td>
+					<td>图片</td>
+                </tr>
+                <foreach name="info" item="v">
+                <tr class="listTr">
+                	<td><input type="checkbox" id="ids" name="ids[]" value="{$v.id}"></td>
+                   	<td>{$v.sortnum}</td>
+					<td><a href="{:U('Link/link_edit',array('id'=>$v['id'],'class_id'=>$class_id))}">{$v.name}</a></td>
+                    <td>{$v.url}</td>
+					<td>
+						<switch name="v.state">
+							<case value="0"><font color=#FF9900>不显示</font></case>
+							<case value="1"><font color=#FF9900>显示</font></case>
+							<default/><font color=#FF0000>错误</font>
+						</switch>
+					</td>
+					<td><a href='' target='_blank'>图片</a></td>
+				</tr>
+				</foreach>
+                <tr class="listFooterTr">
+                    <td colspan="15"></td>
+                </tr>
+			
+		</table>
+		</form>
+		
+	</body>
+</html>

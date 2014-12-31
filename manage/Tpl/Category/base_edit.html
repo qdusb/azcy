@@ -1,0 +1,138 @@
+<html>
+	<head>
+		<title></title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="Pragma" content="no-cache">
+		<meta http-equiv="Cache-Control" content="no-cache">
+		<meta http-equiv="Expires" content="-1000">
+		<link href="__PUBLIC__/images/admin.css" rel="stylesheet" type="text/css">
+		<script type="text/javascript" src="__PUBLIC__/images/common.js"></script>
+		<script charset="utf-8" src="__PUBLIC__/kindeditor/kindeditor.js"></script>
+		<script charset="utf-8" src="__PUBLIC__/kindeditor/lang/zh_CN.js"></script>
+		<script type="text/javascript">
+			KindEditor.ready(function(K) {
+				var editor = K.create('textarea[name="content"]', {
+					uploadJson : '__PUBLIC__/kindeditor/php/upload_json.php',
+					fileManagerJson : '__PUBLIC__/kindeditor/php/file_manager_json.php',
+					width : '700px',
+					height : '300px',
+					pasteType : 1,
+					allowFileManager : true,
+					afterCreate : function() {
+						var self = this;
+						K.ctrl(document, 13, function() {
+							self.sync();
+							K('form[name=form1]')[0].submit();
+						});
+						K.ctrl(self.edit.doc, 13, function() {
+							self.sync();
+							K('form[name=form1]')[0].submit();
+						});
+					}
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+			<tr class="position">
+				<td class="position">当前位置: 管理中心 -&gt; 高级管理 -&gt; 一级分类管理</td>
+			</tr>
+		</table>
+		<table width="98%" border="0" cellspacing="0" cellpadding="0" align="center">
+			<tr height="30">
+				<td><a href="{:U('Category/base_list')}">[返回列表]</a></td>
+			</tr>
+		</table>
+		<form name="form1" action="{:U('Category/base_update')}" method="post"  enctype="multipart/form-data" onSubmit="return check(this);">
+		<table width="100%" border="0" cellSpacing="1" cellPadding="0" align="center" class="editTable">
+			
+				<tr class="editHeaderTr">
+					<td class="editHeaderTd" colSpan="2">一级分类</td>
+				</tr>
+				<tr class="editTr">
+					<td class="editLeftTd">ID号</td>
+					<td class="editRightTd"><input type="text" name="id" value="{$info.id}" size="10" maxlength="20"></td>
+				</tr>
+                <tr class="editTr">
+					<td class="editLeftTd">序号</td>
+					<td class="editRightTd"><input type="text" name="sortnum" value="{$info.sortnum}" size="10" maxlength="5"></td>
+				</tr>
+				<tr class="editTr">
+					<td class="editLeftTd">分类名称</td>
+					<td class="editRightTd"><input type="text" name="name" value="{$info.name}" maxlength="50" size="30"></td>
+				</tr>
+                <tr class="editTr">
+					<td class="editLeftTd">英文名称</td>
+					<td class="editRightTd"><input type="text" name="en_name" value="{$info.en_name}" maxlength="50" size="30"></td>
+				</tr>
+                <tr class="editTr">
+					<td class="editLeftTd">分类状态</td>
+					<td class="editRightTd">
+                        <input type="radio" name="state" value="1" <if condition="$info.state eq 1">checked</if>>使用
+                        <input type="radio" name="state" value="0" <if condition="$info.state eq 0">checked</if>>停用
+                    </td>
+				</tr>
+				 <tr class="editTr">
+					<td class="editLeftTd">内容设置</td>
+					<td class="editRightTd">
+                        <input type="checkbox" name="sub_content" value="1" <if condition="$info.sub_content eq 1">checked</if>>有内容
+                        <input type="checkbox" name="sub_pic" value="1" <if condition="$info.sub_pic eq 1">checked</if>>有图片
+                    </td>
+				</tr>
+                <tr class="editTr">
+					<td class="editLeftTd">最大分类层次</td>
+					<td class="editRightTd">
+                        <select name="max_level">
+							<for start="2" end="7">
+							<option value="{$i}" <if condition="$info.max_level eq 1">selected</if>>{$i}</option>
+							</for>
+                        
+                        </select>
+				    </td>
+				</tr>
+                <tr class="editTr">
+					<td class="editLeftTd">记录状态</td>
+					<td class="editRightTd">
+					<foreach name="info_states" item="v">
+                        <input type="radio" name="info_state" value="{$key}" <if condition="$info.info_state eq $key">checked</if>>{$v}
+					</foreach>
+                    </td>
+                </tr>
+                <tr class="editTr">
+					<td class="editLeftTd">记录设置</td>
+					<td class="editRightTd">
+                        <input type="checkbox" name="hasViews" value="1" <if condition="$info.hasViews eq 1">checked</if>> 点击次数
+						<input type="checkbox" name="hasState" value="1" <if condition="$info.hasState eq 1">checked</if>> 是否显示
+                        <input type="checkbox" name="hasAuthor" value="1" <if condition="$info.hasAuthor eq 1">checked</if>> 文章作者
+						<input type="checkbox" name="hasSource" value="1" <if condition="$info.hasSource eq 1">checked</if>> 文章来源
+                        <input type="checkbox" name="hasKeyword" value="1" <if condition="$info.hasKeyword eq 1">checked</if>> 关键词
+                        
+						<br>
+
+						<input type="checkbox" name="hasPic" value="1" <if condition="$info.hasPic eq 1">checked</if>> 图片上传
+						<input type="checkbox" name="hasAnnex" value="1" <if condition="$info.hasAnnex eq 1">checked</if>> 附件上传
+						<input type="checkbox" name="hasIntro" value="1" <if condition="$info.hasIntro eq 1">checked</if>> 简要介绍
+						<input type="checkbox" name="hasContent" value="1" <if condition="$info.hasContent eq 1">checked</if>> 详细内容
+						<input type="checkbox" name="hasWebsite" value="1" <if condition="$info.hasWebsite eq 1">checked</if>> 链接地址
+                        <br>
+                        <input type="checkbox" name="hasLevel" value="1" <if condition="$info.hasLevel eq 1">checked</if>> 等级设置
+                        <input type="checkbox" name="hasShare" value="1" <if condition="$info.hasShare eq 1">checked</if>> 是否分享
+                    </td>
+                </tr>
+				<tr class="editTr">
+					<td class="editLeftTd">内容</td>
+					<td class="editRightTd"><textarea name="content">{$info.content}</textarea></td>
+				</tr>
+				<tr class="editFooterTr">
+					<td class="editFooterTd" colSpan="2">
+						<input type="submit" value=" 确 定 ">
+						<input type="reset" value=" 重 填 ">
+					</td>
+				</tr>
+			</table>
+		</form>
+		<script type="text/javascript">document.form1.name.focus();</script>
+
+	</body>
+</html>

@@ -1,0 +1,154 @@
+<html>
+	<head>
+		<title></title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="Pragma" content="no-cache">
+		<meta http-equiv="Cache-Control" content="no-cache">
+		<meta http-equiv="Expires" content="-1000">
+		<link href="__PUBLIC__/images/admin.css" rel="stylesheet" type="text/css">
+		<script type="text/javascript">
+			function expand(el)
+			{
+				childObj = document.getElementById("child" + el);
+
+				if (childObj.style.display == "none")
+				{
+					childObj.style.display = "block";
+				}
+				else
+				{
+					childObj.style.display = "none";
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<table width="170" height="100%" border="0" cellspacing="0" cellpadding="0" background="__PUBLIC__/images/menu_bg.jpg">
+			<tr>
+				<td valign="top" align="center">
+					<table width="100%" border="0" cellspacing="0" cellpadding="0">
+						<tr>
+							<td height="10"></td>
+						</tr>
+					</table>
+            		<foreach name="menus" item="v">
+					<table width="150" border="0" cellspacing="0" cellpadding="0">
+					    <tr height="22">
+					        <td background="__PUBLIC__/images/menu_bt.jpg" style="padding-left:30px"><a href="javascript:void(0)" onClick="expand({$key})" class="menuParent">{$v['base'].name}</a></td>
+					    </tr>
+					    <tr height="4">
+					        <td></td>
+					    </tr>
+					</table>
+					<table id="child{$key}" width="150" border="0" cellspacing="0" cellpadding="0" style="display:none">
+						<foreach name="v['sub']" item="t">
+						<tr height="20">
+						    <td width="30" align="center"><img src="__PUBLIC__/images/menu_icon.gif" width="9" height="9">
+						    </td>
+						    <td><a href="{$t.url}" class="menuChild" target="main">{$t.name}</a></td>
+						</tr>
+						</foreach>
+						<if condition="$grade gt 6">
+						<tr height="20">
+						    <td width="30" align="center"><img src="__PUBLIC__/images/menu_icon.gif" width="9" height="9"></td>
+						   
+						    <td><a href="{:U('Category/manage_list',array('id'=>$v['base']['id']))}" class="menuChild" target="main">分类管理</a></td>
+						</tr>
+						</if>
+					    <tr height="4">
+					        <td colspan="2"></td>
+					    </tr>
+					</table>
+                </foreach>
+				<!-- 高级管理员 -->
+				<if condition="$grade gt 6">
+				<table width="150" border="0" cellspacing="0" cellpadding="0">
+				    <tr height="22">
+				        <td background="__PUBLIC__/images/menu_bt.jpg" style="padding-left:30px"><a href="javascript:void(0)" onClick="expand('advanced')" class="menuParent">高级管理</a></td>
+				    </tr>
+				    <tr height="4">
+				        <td></td>
+				    </tr>
+				</table>
+				<table id="childadvanced" width="150" border="0" cellspacing="0" cellpadding="0" style="DISPLAY:none">
+					<foreach name="advanced" item="v">
+				    <tr height="20">
+				        <td width="30" align="center"><img src="__PUBLIC__/images/menu_icon.gif" width="9" height="9"></td>
+				        <td><a href="{$v.url}" class="menuChild" target="main">{$v.name}</a></td>
+				    </tr>
+						</foreach>
+				    <tr height="4">
+				        <td colspan="2"></td>
+				    </tr>
+				</table>
+				</if>
+				 <!-- 系统管理员 -->
+				<if condition="$grade gt 7">
+				<table width="150" border="0" cellspacing="0" cellpadding="0">
+				    <tr height="22">
+				        <td background="__PUBLIC__/images/menu_bt.jpg" style="padding-left:30px"><a href="javascript:void(0)" onClick="expand('system')" class="menuParent">系统管理</a></td>
+				    </tr>
+				    <tr height="4">
+				        <td></td>
+				    </tr>
+				</table>
+				<table id="childsystem" width="150" border="0" cellspacing="0" cellpadding="0" style="DISPLAY:none">
+					<tr height="20">
+						<td width="30" align="center"><img src="__PUBLIC__/images/menu_icon.gif" width="9" height="9"></td>
+						<td><a href="{:U('Admin/admin_list')}" class="menuChild" target="main">管理员列表</a></td>
+					</tr>
+				    <tr height="4">
+				        <td colspan="2"></td>
+				    </tr>
+				</table>
+				</if>
+				<!-- 隐藏管理员 -->
+				<if condition="$grade eq 9">
+				<table width="150" border="0" cellspacing="0" cellpadding="0">
+				    <tr height="22">
+				        <td background="__PUBLIC__/images/menu_bt.jpg" style="padding-left:30px"><a href="javascript:void(0)" onClick="expand('hide')" class="menuParent">隐藏管理</a></td>
+				    </tr>
+				    <tr height="4">
+				        <td></td>
+				    </tr>
+				</table>
+				<table id="childhide" width="150" border="0" cellspacing="0" cellpadding="0" style="DISPLAY:none">
+				    <tr height="20">
+				        <td width="30" align="center"><img src="__PUBLIC__/images/menu_icon.gif" width="9" height="9"></td>
+				        <td><a href="{:U('Category/base_list')}" class="menuChild" target="main">一级分类管理</a></td>
+				    </tr>
+				    <tr height="20">
+				        <td width="30" align="center"><img src="__PUBLIC__/images/menu_icon.gif" width="9" height="9"></td>
+				        <td><a href="{:U('Advanced/advanced_list')}" class="menuChild" target="main">高级功能管理</a></td>
+				    </tr>
+				    <tr height="4">
+				        <td colspan="2"></td>
+				    </tr>
+				</table>
+				</if>
+				<table width="150" border="0" cellspacing="0" cellpadding="0">
+					<tr height="22">
+						<td background="__PUBLIC__/images/menu_bt.jpg" style="padding-left:30px"><a href="javascript:void(0)" onClick="expand('personal')" class="menuParent">个人管理</a></td>
+					</tr>
+					<tr height="4">
+						<td></td>
+					</tr>
+				</table>
+				<table id="childpersonal" width="150" border="0" cellspacing="0" cellpadding="0">
+					<if condition="$grade gt 7">
+					<tr height="20">
+						<td width="30" align="center"><img src="__PUBLIC__/images/menu_icon.gif" width="9" height="9"></td>
+						<td><a href="{:U('Admin/change_pass')}" class="menuChild" target="main">修改口令</a></td>
+					</tr>
+					</if>
+					<tr height="20">
+						<td width="30" align="center"><img src="__PUBLIC__/images/menu_icon.gif" width="9" height="9"></td>
+						<td><a href="{:U('Login/loginout')}" class="menuChild" target="_top" onClick="if (confirm('确定要退出吗？')) return true; else return false;">退出系统</a></td>
+					</tr>
+				</table>
+				</td>
+				<td bgcolor="#D1E6F7" width="1"></td>
+			</tr>
+		</table>
+	</body>
+</html>

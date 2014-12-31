@@ -1,0 +1,88 @@
+<include file="Public:innerHead"/>
+	<body>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+			<tr class="position">
+				<td class="position">当前位置: 管理中心 -&gt; 高级管理 -&gt; 会员管理</td>
+			</tr>
+		</table>
+		<table width="98%" border="0" cellspacing="0" cellpadding="0" align="center">
+			<tr height="30">
+				<td>
+					<a href="{:U('Member/member_list',array('page_id'=>$page_id))}">[返回列表]</a>&nbsp;
+				</td>
+			</tr>
+		</table>
+		<form name="form1" action="{:U('Member/member_update')}" method="post">
+			<input type="hidden" name="page_id" value="{$page_id}"/>
+			<input type="hidden" name="id" value="{$info.id}"/>
+
+			<table width="100%" border="0" cellSpacing="1" cellPadding="0" align="center" class="editTable">
+				<tr class="editHeaderTr">
+					<td class="editHeaderTd" colSpan="2">会员管理</td>
+				</tr>
+				<tr class="editTr">
+					<td class="editLeftTd">序号</td>
+					<td class="editRightTd"><input type="text" name="sortnum" maxlength="20" size="24" value="{$info.sortnum}"/></td>
+				</tr>
+				<tr class="editTr">
+					<td class="editLeftTd">会员用户名</td>
+					<td class="editRightTd"><input type="text" name="user_name" maxlength="20" size="60" value="{$info.user_name}"/></td>
+				</tr>
+				<tr class="editTr">
+					<td class="editLeftTd">会员密码</td>
+					<td class="editRightTd"><input type="password" name="password" maxlength="20" size="60" value=""/></td>
+				</tr>
+                <tr class="editTr">
+					<td class="editLeftTd">会员等级</td>
+					<td class="editRightTd">
+                    <select name="level" style="width:80px;">
+                    	<foreach name="levels" item="v">
+                        <option value="{$key}"  <if condition="$key eq $info['level']">selected</if>>{$v}</option>
+                   		 </foreach>
+                    </select>
+                    </td>
+				</tr>
+				<tr class="editTr">
+					<td class="editLeftTd">会员姓名</td>
+					<td class="editRightTd"><input type="text" name="real_name" maxlength="20" size="60" value="{$info.real_name}"/></td>
+				</tr>
+                <tr class="editTr">
+					<td class="editLeftTd">电话</td>
+					<td class="editRightTd"><input type="text" name="phone" maxlength="20" size="60" value="{$info.phone}"/></td>
+				</tr>
+	
+                <tr class="editTr">
+					<td class="editLeftTd">电子邮箱</td>
+					<td class="editRightTd"><input type="text" name="email" maxlength="20" size="60" value="{$info.email}"/></td>
+				</tr>
+				<tr class="editTr">
+					<td class="editLeftTd">性别</td>
+                    
+					<td class="editRightTd">
+                    <input type="radio" name="sex" value="男" <if condition="$info.sex eq '男'">checked</if>/>&nbsp;男&nbsp;
+                    <input type="radio" name="sex" value="女" <if condition="$info.sex eq '女'">checked</if>/>&nbsp;女&nbsp;
+                    </td>
+				</tr>
+				<tr class="editTr">
+					<td class="editLeftTd">工作单位</td>
+					<td class="editRightTd"><input type="text" name="job" maxlength="20" size="60" value="{$info.job}"/></td>
+				</tr>
+				<tr class="editTr">
+					<td class="editLeftTd">家庭地址</td>
+					<td class="editRightTd"><input type="text" name="address" maxlength="20" size="60" value="{$info.address}"/></td>
+				</tr>
+				<tr class="editTr">
+					<td class="editLeftTd">备注</td>
+					<td class="editRightTd"><input type="text" name="remark" maxlength="20" size="60" value="{$info.remark}"/></td>
+				</tr>
+				
+				<tr class="editFooterTr">
+					<td class="editFooterTd" colSpan="2">
+						<input type="submit" value=" 确 定 ">
+						<input type="reset" value=" 重 填 ">
+					</td>
+				</tr>
+			</table>
+		</form>
+	</body>
+</html>

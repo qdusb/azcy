@@ -1,0 +1,56 @@
+<include file="Public:innerHead"/>
+	<body>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+			<tr class="position">
+				<td class="position">当前位置: 管理中心 -&gt; Banner分类管理</td>
+			</tr>
+		</table>
+		<table width="98%" border="0" cellspacing="0" cellpadding="0" align="center">
+			<tr height="30">
+				<td>
+					<a href="{:U('Banner/banner_class_list')}">[返回列表]</a>
+				</td>
+			</tr>
+		</table>
+		<form name="form1" action="{:U('Banner/banner_class_update')}" method="post">
+		<input name="id" value="{$info.id}" type="hidden"/>
+		<table width="100%" border="0" cellSpacing="1" cellPadding="0" align="center" class="editTable">
+			
+				<tr class="editHeaderTr">
+					<td class="editHeaderTd" colSpan="2">子分类</td>
+				</tr>
+				<tr class="editTr">
+					<td class="editLeftTd">排列序号</td>
+					<td class="editRightTd"><input type="text" name="sortnum" value="{$info.sortnum}" size="10" maxlength="5"></td>
+				</tr>
+				<tr class="editTr">
+					<td class="editLeftTd">分类名称</td>
+					<td class="editRightTd"><input type="text" name="name" value="{$info.name}" maxlength="50" size="30"></td>
+				</tr>
+				<tr class="editTr">
+					<td class="editLeftTd">禁止增加</td>
+					<td class="editRightTd">
+						
+						<input type="radio" name="add_deny" value="1"<if condition="$info.add_deny eq 1">checked</if>>是
+						<input type="radio" name="add_deny" value="0"<if condition="$info.add_deny eq 0">checked</if>>否
+					</td>
+				</tr>
+				<tr class="editTr">
+					<td class="editLeftTd">禁止删除</td>
+					<td class="editRightTd">
+						<input type="radio" name="delete_deny" value="1"<if condition="$info.delete_deny eq 1">checked</if>>是
+						<input type="radio" name="delete_deny" value="0"<if condition="$info.delete_deny eq 0">checked</if>>否
+					</td>
+				</tr>
+				<tr class="editFooterTr">
+					<td class="editFooterTd" colSpan="2">
+						<input type="submit" value=" 确 定 ">
+						<input type="reset" value=" 重 填 ">
+					</td>
+				</tr>
+		</table>
+		</form>
+		<script type="text/javascript">document.form1.name.focus();</script>
+		
+	</body>
+</html>

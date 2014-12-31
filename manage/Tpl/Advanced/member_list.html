@@ -1,0 +1,58 @@
+<include file="Public:innerHead"/>
+	<body>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+			<tr class="position">
+				<td class="position">当前位置: 管理中心 -&gt; 高级管理 -&gt; 会员管理</td>
+			</tr>
+		</table>
+		<table width="98%" border="0" cellspacing="0" cellpadding="0" align="center">
+			<tr height="30">
+				<td>
+					<a href="{$freshURL}">[刷新列表]</a>&nbsp;
+                    <a href="javascript:reverseCheck(document.form1.ids);">[反向选择]</a>&nbsp;
+                    <a href="javascript:if(delCheck(document.form1.ids)) {document.form1.submit();}">[删除]</a>&nbsp;
+                    <a href="{:U('Member/member_edit')}">[新增会员]</a>&nbsp;
+				</td>
+				<td align="right">
+				</td>
+			</tr>
+		</table>
+		<form name="form1" action="{:U('Member/member_delete')}" method="post">
+		<input type="hidden" name="page_id" value="{$page_id}"/>
+		<table width="100%" border="0" cellspacing="1" cellpadding="0" align="center" class="listTable">
+            
+                <tr class="listHeaderTr">
+                    <td width="5%"></td>
+                    <td width="10%">序号</td>
+                    <td width="15%">用户名</td>
+                    <td width="15%">真实姓名</td>
+                    <td width="15%">电话</td>
+                    <td width="15%">会员级别</td>
+                    <td width="15%">工作单位</td>
+                </tr>
+                <foreach name="info" item="v">
+                <tr class="listTr">
+                    <td><input type="checkbox" id="ids" name="ids[]" value="{$v.id}"></td>
+                    <td>{$v.sortnum}</td>
+                    <td><a href="{:U('Member/member_edit',array('id'=>$v['id']))}">{$v.user_name}</a></td>
+                    <td>{$v.real_name}</td>
+                    <td>{$v.phone}</td>
+                    <td>
+                    <switch name="v.level">
+                    	<case value="0">普通用户</case>
+                    	<case value="1">初级会员</case>
+                    	<case value="2">中级会员</case>
+                    	<case value="3">高级会员</case>
+                    	<default />错误
+                    </switch>
+                    </td>
+                    <td>{$v.job}</td>        
+                </tr>
+                </foreach>
+                <tr class="listFooterTr">
+                    <td colspan="10"><include file="Public:page"/></td>
+                </tr>
+			</table>
+		 </form>
+	</body>
+</html>
