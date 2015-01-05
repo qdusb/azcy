@@ -1,4 +1,5 @@
 <?php 
+
 session_start();
 require(dirname(__FILE__) . "/init.php");
 if ($_SERVER["REQUEST_METHOD"] == "POST")

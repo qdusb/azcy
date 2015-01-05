@@ -4,7 +4,7 @@ class EmptyAction extends Action{
 		header("HTTP/1.0 404 Not Found");
 	 	$this->display('Public:error');
 	 }
-
+     
 	// 404
 	 function index() {
 		header("HTTP/1.0 404 Not Found");

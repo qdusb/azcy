@@ -1,10 +1,10 @@
-<?php
+<?php 
 ob_start();											//使用缓冲
 
 //装载必须的文件
 require("../config.php");
 require("../include/onlyDB.php");
-require("../include/onlyException.php");
+//require("../include/onlyException.php");
 require("../include/page.php");
 require("../include/functions.php");
 
@@ -36,4 +36,3 @@ if (!get_magic_quotes_gpc())
 	if (is_array(@$_SESSION))
 		array_walk($_SESSION, "process_variables");
 }
-?>

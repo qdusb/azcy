@@ -31,10 +31,10 @@ class AdminAction extends BasicAdvancedAction{
 		$advanced=M("advanced")->where("state=1")->select();
 		$db=M("info_class");
 		$category=array();
-		$base_category=$db->where("id like '___'")->order('sortnum desc')->select();
+		$base_category=$db->where("id like '___'")->order('sort desc')->select();
 		foreach($base_category as $base){
 			$base_id=$base['id'];
-			$sub=$db->where("id like '{$base_id}___'")->order("sortnum asc")->select();
+			$sub=$db->where("id like '{$base_id}___'")->order("sort asc")->select();
 			$sub_category=array(
 			"base"=>$base,
 			"sub"=>$sub

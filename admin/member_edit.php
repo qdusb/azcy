@@ -1,4 +1,4 @@
-<?
+<?php
 require(dirname(__FILE__) . "/init.php");
 require(dirname(__FILE__) . "/isadmin.php");
 require(dirname(__FILE__) . "/config.php");
@@ -196,7 +196,7 @@ else
 		<table width="98%" border="0" cellspacing="0" cellpadding="0" align="center">
 			<tr height="30">
 				<td>
-					<a href="<?=$listUrl?>">[返回列表]</a>&nbsp;
+					<a href="<?php echo $listUrl?>">[返回列表]</a>&nbsp;
 				</td>
 			</tr>
 		</table>
@@ -207,11 +207,11 @@ else
 				</tr>
 				<tr class="editTr">
 					<td class="editLeftTd">序号</td>
-					<td class="editRightTd"><input type="text" name="sortnum" maxlength="20" size="24" value="<?=$sortnum?>"/></td>
+					<td class="editRightTd"><input type="text" name="sortnum" maxlength="20" size="24" value="<?php echo $sortnum?>"/></td>
 				</tr>
 				<tr class="editTr">
 					<td class="editLeftTd">会员用户名</td>
-					<td class="editRightTd"><input type="text" name="user_name" maxlength="20" size="60" value="<?=$user_name?>"/></td>
+					<td class="editRightTd"><input type="text" name="user_name" maxlength="20" size="60" value="<?php echo $user_name?>"/></td>
 				</tr>
 				<tr class="editTr">
 					<td class="editLeftTd">会员密码</td>
@@ -221,45 +221,45 @@ else
 					<td class="editLeftTd">会员等级</td>
 					<td class="editRightTd">
 					<select name="level" style="width:80px;">
-						<option value="0"  <? if($level == 0) echo "selected";?>>普通用户</option>
-						<option value="1"  <? if($level == 1) echo "selected";?>>初级会员</option>
-						<option value="2"  <? if($level == 2) echo "selected";?>>中级会员</option>
-						<option value="3"  <? if($level == 3) echo "selected";?>>高级会员</option>
+						<option value="0"  <?php if($level == 0) echo "selected";?>>普通用户</option>
+						<option value="1"  <?php if($level == 1) echo "selected";?>>初级会员</option>
+						<option value="2"  <?php if($level == 2) echo "selected";?>>中级会员</option>
+						<option value="3"  <?php if($level == 3) echo "selected";?>>高级会员</option>
 					</select>
 					</td>
 				</tr>
 				<tr class="editTr">
 					<td class="editLeftTd">会员姓名</td>
-					<td class="editRightTd"><input type="text" name="real_name" maxlength="20" size="60" value="<?=$real_name?>"/></td>
+					<td class="editRightTd"><input type="text" name="real_name" maxlength="20" size="60" value="<?php echo $real_name?>"/></td>
 				</tr>
 				<tr class="editTr">
 					<td class="editLeftTd">电话</td>
-					<td class="editRightTd"><input type="text" name="phone" maxlength="20" size="60" value="<?=$phone?>"/></td>
+					<td class="editRightTd"><input type="text" name="phone" maxlength="20" size="60" value="<?php echo $phone?>"/></td>
 				</tr>
 	
 				<tr class="editTr">
 					<td class="editLeftTd">电子邮箱</td>
-					<td class="editRightTd"><input type="text" name="email" maxlength="20" size="60" value="<?=$email?>"/></td>
+					<td class="editRightTd"><input type="text" name="email" maxlength="20" size="60" value="<?php echo $email?>"/></td>
 				</tr>
 				<tr class="editTr">
 					<td class="editLeftTd">性别</td>
 					
 					<td class="editRightTd">
-					<input type="radio" name="sex" value="男" <? if ($sex == "男") echo "checked";?> />&nbsp;男&nbsp;
-					<input type="radio" name="sex" value="女" <? if ($sex == "女") echo "checked";?>/>&nbsp;女&nbsp;
+					<input type="radio" name="sex" value="男" <?php if ($sex == "男") echo "checked";?> />&nbsp;男&nbsp;
+					<input type="radio" name="sex" value="女" <?php if ($sex == "女") echo "checked";?>/>&nbsp;女&nbsp;
 					</td>
 				</tr>
 				<tr class="editTr">
 					<td class="editLeftTd">工作单位</td>
-					<td class="editRightTd"><input type="text" name="job" maxlength="20" size="60" value="<?=$job?>"/></td>
+					<td class="editRightTd"><input type="text" name="job" maxlength="20" size="60" value="<?php echo $job?>"/></td>
 				</tr>
 				<tr class="editTr">
 					<td class="editLeftTd">家庭地址</td>
-					<td class="editRightTd"><input type="text" name="address" maxlength="20" size="60" value="<?=$address?>"/></td>
+					<td class="editRightTd"><input type="text" name="address" maxlength="20" size="60" value="<?php echo $address?>"/></td>
 				</tr>
 				<tr class="editTr">
 					<td class="editLeftTd">备注</td>
-					<td class="editRightTd"><input type="text" name="remark" maxlength="20" size="60" value="<?=$remark?>"/></td>
+					<td class="editRightTd"><input type="text" name="remark" maxlength="20" size="60" value="<?php echo $remark?>"/></td>
 				</tr>
 				
 				<tr class="editFooterTr">
@@ -270,7 +270,7 @@ else
 				</tr>
 			</table>
 		</form>
-		<?
+		<?php
 		$db->close();
 		?>
 	</body>

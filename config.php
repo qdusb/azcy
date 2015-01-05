@@ -6,7 +6,7 @@ error_reporting(1);
 $config["db_host"] = 'localhost';
 $config["db_user"] = "root";
 $config["db_pass"] = "";
-$config["db_name"] = 'azcy';
+$config["db_name"] = 'xrjy';
 
 //系统配置
 define("DEFAULT_PAGE_SIZE", 18);					//	默认分页时每页的记录数(对后台)

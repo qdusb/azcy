@@ -15,10 +15,10 @@ class PublicAction extends BasicAction{
         /*栏目*/
     	$db=M("info_class");
     	$menus=array();
-    	$bases=$db->where("id like '___' and state = 1")->order("sortnum asc")->select();
+    	$bases=$db->where("id like '___' and state = 1")->order("sort asc")->select();
     	foreach($bases as $key=>$base){
     		$sid=$base['id'];
-    		$subMenu=$db->where("id like '".$sid."___' and state = 1 ")->order("sortnum asc")->select();
+    		$subMenu=$db->where("id like '".$sid."___' and state = 1 ")->order("sort asc")->select();
     		foreach($subMenu as &$item){
     			$item['url']=getLinkURL($item['id']);
     		}
@@ -30,7 +30,7 @@ class PublicAction extends BasicAction{
 
         /*高级管理*/
         $db=M("advanced");
-        $advanced=$db->where("state=1")->order("sortnum asc")->select();
+        $advanced=$db->where("state=1")->order("sort asc")->select();
     	
         foreach($advanced as $key=>$val){
             $val['action']=empty($val['action'])?"index":$val['action'];

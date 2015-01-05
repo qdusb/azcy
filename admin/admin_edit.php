@@ -1,4 +1,4 @@
-<?
+<?php 
 require(dirname(__FILE__) . "/init.php");
 require(dirname(__FILE__) . "/isadmin.php");
 require(dirname(__FILE__) . "/config.php");
@@ -197,7 +197,7 @@ else
 		<script type="text/javascript">
 		function check(form)
 		{
-			<?
+			<?php
 			//添加帐号时
 			if ($id < 1)
 			{
@@ -208,7 +208,7 @@ else
 					form.name.focus();
 					return false;
 				}
-			<?
+			<?php
 			}
 			?>
 
@@ -235,7 +235,7 @@ else
 					return false;
 				}
 			}
-			<?
+			<?php
 			if ($id < 1)
 			{
 			?>
@@ -245,7 +245,7 @@ else
 					form.pass.focus();
 					return false;
 				}
-			<?
+			<?php
 			}
 			?>
 
@@ -262,7 +262,7 @@ else
 		<table width="98%" border="0" cellspacing="0" cellpadding="0" align="center">
 			<tr height="30">
 				<td>
-					<a href="<?=$listUrl?>">[返回列表]</a>
+					<a href="<?php echo $listUrl?>">[返回列表]</a>
 				</td>
 			</tr>
 		</table>
@@ -274,7 +274,7 @@ else
 				<tr class="editTr">
 					<td class="editLeftTd">登陆帐号</td>
 					<td class="editRightTd">
-                    	<?
+                    	<?php
                         if ($id > 0)
 						{
 							echo $name;
@@ -283,14 +283,14 @@ else
 						{
 						?>
                         	<input type="text" name="name" value="" size="30" maxlength="50">
-                        <?
+                        <?php
                         }
 						?>
                     </td>
 				</tr>
 				<tr class="editTr">
 					<td class="editLeftTd">真实姓名</td>
-					<td class="editRightTd"><input type="text" name="realname" value="<?=$realname?>" size="30" maxlength="20"></td>
+					<td class="editRightTd"><input type="text" name="realname" value="<?php echo $realname?>" size="30" maxlength="20"></td>
 				</tr>
 				<tr class="editTr">
 					<td class="editLeftTd">密码</td>
@@ -303,33 +303,33 @@ else
 				<tr class="editTr">
 					<td class="editLeftTd">管理权限</td>
 					<td class="editRightTd">
-						<input type="radio" name="grade" value="5"<? if ($grade == 5) echo " checked";?>>普通管理员
-                        <input type="radio" name="grade" value="6"<? if ($grade == 6) echo " checked";?>>审核管理员
-                        <input type="radio" name="grade" value="7"<? if ($grade == 7) echo " checked";?>>高级管理员
-                        <input type="radio" name="grade" value="8"<? if ($grade == 8) echo " checked";?>>系统管理员
+						<input type="radio" name="grade" value="5"<?php if ($grade == 5) echo " checked";?>>普通管理员
+                        <input type="radio" name="grade" value="6"<?php if ($grade == 6) echo " checked";?>>审核管理员
+                        <input type="radio" name="grade" value="7"<?php if ($grade == 7) echo " checked";?>>高级管理员
+                        <input type="radio" name="grade" value="8"<?php if ($grade == 8) echo " checked";?>>系统管理员
 					</td>
 				</tr>
                 <tr class="editTr">
 					<td class="editLeftTd">状态</td>
 					<td class="editRightTd">
-                        <input type="radio" name="state" value="0"<? if ($state == 0) echo " checked";?>>锁定
-                        <input type="radio" name="state" value="1"<? if ($state == 1) echo " checked";?>>正常
+                        <input type="radio" name="state" value="0"<?php if ($state == 0) echo " checked";?>>锁定
+                        <input type="radio" name="state" value="1"<?php if ($state == 1) echo " checked";?>>正常
                     </td>
                 </tr>
 				<tr class="editTr">
 					<td class="editLeftTd">管理权限</td>
 					<td class="editRightTd">
                     	<table width="100%" border="0" cellspacing="0" cellpadding="0">
-                        	<?
+                        	<?php
                             $sql = "select id, name from info_class where id like '" . CLASS_SPACE . "' order by sortnum asc";
 							$rst = $db->query($sql);
 							while ($row = $db->fetch_array($rst))
 							{
 							?>
 								<tr>
-									<td colspan="6"><input type="checkbox" name="class_id[]" value="<?=$row["id"]?>"<? if (hasInclude($class_id, $row["id"]) == true) echo " checked"?>> <font color="#FF6600"><?=$row["name"]?></font></td>
+									<td colspan="6"><input type="checkbox" name="class_id[]" value="<?php echo $row["id"]?>"<?php if (hasInclude($class_id, $row["id"]) == true) echo " checked"?>> <font color="#FF6600"><?php echo $row["name"]?></font></td>
 								</tr>
-                                <?
+                                <?php
                                 $sql = "select id, name from info_class where id like '" . $row["id"] . CLASS_SPACE . "' order by sortnum asc";
 								$rst2 = $db->query($sql);
 								$i = 1;
@@ -337,8 +337,8 @@ else
 								{
 									if ($i % 5 == 1) echo "<tr><td width='20'></td>";
 								?>
-                                    <td><input type="checkbox" name="class_id[]" value="<?=$row2["id"]?>"<? if (hasInclude($class_id, $row2["id"]) == true) echo " checked"?>><?=$row2["name"]?></td>
-							<?
+                                    <td><input type="checkbox" name="class_id[]" value="<?php echo $row2["id"]?>"<?php if (hasInclude($class_id, $row2["id"]) == true) echo " checked"?>><?php echo $row2["name"]?></td>
+							<?php
 									$i++;
 									if ($i % 5 == 1) echo "</tr>";
 								}
@@ -358,7 +358,7 @@ else
 					<td class="editLeftTd">高级权限</td>
 					<td class="editRightTd">
 						<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
-							<?
+							<?php
                             $sql = "select id, name from advanced where state=1 order by sortnum asc";
 							$rst = $db->query($sql);
 							$i = 1;
@@ -366,8 +366,8 @@ else
 							{
 								if ($i % 5 == 1) echo "<tr>";
 							?>
-                                <td><input type="checkbox" name="advanced_id[]" value="<?=$row["id"]?>"<? if (hasInclude($advanced_id, $row["id"]) == true) echo " checked"?>><?=$row["name"]?></td>
-							<?
+                                <td><input type="checkbox" name="advanced_id[]" value="<?php echo $row["id"]?>"<?php if (hasInclude($advanced_id, $row["id"]) == true) echo " checked"?>><?php echo $row["name"]?></td>
+							<?php
 								$i++;
 								if ($i % 5 == 1) echo "</tr>";
                             }
@@ -400,12 +400,12 @@ else
 				</tr>
 			</form>
 		</table>
-        <?
+        <?php
         if ($id < 1)
 		{
 		?>
 			<script type="text/javascript">document.form1.name.focus();</script>
-		<?
+		<?php
         }
 
 		$db->close();

