@@ -1,4 +1,14 @@
 <?php
+function getUpload(){
+     import('ORG.Net.UploadFile');
+    $data_folder=date("Ymd");
+    $upload = new UploadFile();
+    $upload->maxSize            = C("IMAGE_SIZE");
+    $upload->allowExts          = explode(',', 'jpg,gif,png,jpeg,zip,ppt,doc,docx,xml,xmls');
+    $upload->savePath           = C("UPLOAD_PATH").$data_folder."/";
+    $upload->thumbRemoveOrigin  = false;
+    return $upload; 
+}
 function con_filter($str){
 	return str_replace("\&quot;", "", $str);
 }

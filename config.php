@@ -26,5 +26,6 @@ return $array = array(
 	'LOG_RECORD'	=> false,
 	'LOG_TYPE' 		=> 3, 
 	'URL_HTML_SUFFIX'       => '',
+	'UPLOAD_PATH'       => './upload/',
 );
 ?>

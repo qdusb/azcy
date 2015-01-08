@@ -82,7 +82,7 @@ class InfoAction extends BasicAction{
 			$sort=$db->where("class_id={$class_id}")->max("sort");
 			$info['sort']=$sort+10;
 			$info['state']=1;
-			$info['create_time']=time();
+			$info['create_time']=date("Y-m-d H:i:s",time());
 			
 		}else{
 			$info=$db->where("id={$id}")->find();
@@ -100,6 +100,7 @@ class InfoAction extends BasicAction{
 	}
 	/*数据更新 包括新增和修改*/
 	public function update(){
+        
 		if(!$this->isPost()){
 			$this->display("Public/error");
 			exit;
@@ -133,22 +134,38 @@ class InfoAction extends BasicAction{
 			"intro"=>I("intro"),
 			"content"=>I("content","","htmlspecialchars"),
 			"views"=>I("views"),
-			"modify_time"=>time(),
-			"state"=>(int)I("state")
-			);
-
-		if(empty($id)){
+			"modify_time"=>date("Y-m-d H:i:s"),
+			"state"=>(int)I("state"),
+            "create_time"=>I("create_time")
+		);
+        if(!empty($_FILES)){
+            $data_folder=date("Ymd");
+            $upload = getUpload();
+            if (!$upload->upload()) {
+                $this->error($upload->getErrorMsg());
+            } else {
+                $uploadList = $upload->getUploadFileInfo();
+            }
+            foreach($uploadList as $list){
+                if($list['key']=="img"){
+                    $data["pic"]=$data_folder."/".$list['savename'];
+                }else{
+                    $data["annex"]=$data_folder."/".$list['savename'];
+                }
+            }
+        }
+        if(empty($id)){
 			$id=$db->max("id");
 			$data['id']=$id+1;
 			if($this->grade==5){
 				$data['state']=0;
 			}
-			$data['create_time']=time();
 			$rst=$db->add($data);
 		}else{
 			$rst=$db->where("id={$id}")->save($data);
 		}
-
+        var_dump($uploadList);
+        exit;
 		if($rst !== false){
 			U("Info/infolist",$params,"",true);
 		}else{
@@ -172,11 +189,16 @@ class InfoAction extends BasicAction{
 		$ids=I("ids");
 		$db=M("info");
 		$condition['id']  = array('in',$ids);
-
+        foreach($ids as $id){
+            $class_id=$db->where("id={$id}")->field("class_id")->find();
+            $class_id=$class_id['class_id'];
+            $db->where("id={$id}")->save(array("o_class_id"=>$class_id));
+        }
 		$rst=$db->where($condition)->save(array("class_id"=>"-1"));
 
 		$class_id=I("class_id");
 		$page_id=I("page_id","1");
+        
 		$returnURL=U("Info/infolist",array("class_id"=>$class_id,"page_id"=>$page_id));
 		if($rst==true){
 			$params=array(

@@ -8,7 +8,7 @@ $array=array(
 		),
 	"PAGE_SIZE"=>12,
 	"IMAGE_SIZE"=>1024*1024*3,
-	"UPLOAD_PATH_FROM_ADMIN"=>'../../upload/'
+	"UPLOAD_PATH_FROM_ADMIN"=>'../upload/'
 );
 return array_merge($config,$array);
 ?>
