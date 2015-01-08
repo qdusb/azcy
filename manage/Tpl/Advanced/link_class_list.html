@@ -24,7 +24,7 @@
 			</tr>
 			<foreach name="info" item="v">
 			<tr class="listTr">
-				<td>{$v.sortnum}</td>
+				<td>{$v.sort}</td>
 				<td><a href="{:U('Link/link_class_edit',array('id'=>$v['id']))}">{$v.name}</a></td>
 				<td>
 				<if condition="$v.haspic eq 1">图片链接

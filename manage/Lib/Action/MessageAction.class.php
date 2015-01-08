@@ -13,7 +13,7 @@ class MessageAction extends BasicAdvancedAction{
 		
 		$this->assign("freshURL",U("Message/message_list",$params));
 		
-		$info=$db->order("sortnum desc")->limit(($page_id-1)*$page_size,$page_size)->select();
+		$info=$db->order("sort desc")->limit(($page_id-1)*$page_size,$page_size)->select();
 		$this->assign("info",$info);
 		$this->assign("page_id",$page_id);
 		$this->display("Advanced/message_list");
@@ -45,7 +45,7 @@ class MessageAction extends BasicAdvancedAction{
 		}
 		$db=M("message");
 		$data=array(
-			"sortnum"=>I("sortnum"),
+			"sort"=>I("sort"),
 			"state"=>I("state"),
 			"reply"=>I("reply"),
 		);

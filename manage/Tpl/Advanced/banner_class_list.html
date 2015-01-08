@@ -25,7 +25,7 @@
 			</tr>
 			<foreach name="info" item="v">
 				<tr class="listTr">
-					<td>{$v.sortnum}</td>
+					<td>{$v.sort}</td>
 					<td><a href="{:U('Banner/banner_class_edit',array('id'=>$v['id']))}">{$v.name}</a></td>
                     <td>
 					<if condition="$v.add_deny eq 0">否

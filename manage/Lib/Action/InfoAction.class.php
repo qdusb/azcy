@@ -45,13 +45,17 @@ class InfoAction extends BasicAction{
 		$page=page($page_id,$page_num,"Info/infolist",$params);
 		$this->assign("page",$page);
 
-		
 		$start_record=($page_id-1)*$page_size;
-		$record=$db->where($condition)->order("state desc,sortnum desc,create_time desc")->limit($start_record,$page_size)->select();
-
-		foreach($record as $key=>$val){
+		$record=$db->where($condition)->order("state desc,sort desc,create_time desc")->limit($start_record,$page_size)->select();
+        
+        if(count($record)<=0&&$page_id>1){
+            $params=array_merge($params,array("page_id"=>$page_id-1));
+            U("Info/infolist",$params,"",true);
+        }
+        
+		foreach($record as $key=>&$val){
 			$params=array_merge($params,array("id"=>$val['id']));
-			$record[$key]['url']=U("Info/edit",$params);
+			$val['url']=U("Info/edit",$params);
 		}
 		$this->assign("record",$record);
 		$this->display("info_list");
@@ -75,8 +79,8 @@ class InfoAction extends BasicAction{
 		$db=M("info");
 		if(empty($id)){
 			$info=array();
-			$sortnum=$db->where("class_id={$class_id}")->max("sortnum");
-			$info['sortnum']=$sortnum+10;
+			$sort=$db->where("class_id={$class_id}")->max("sort");
+			$info['sort']=$sort+10;
 			$info['state']=1;
 			$info['create_time']=time();
 			
@@ -117,7 +121,7 @@ class InfoAction extends BasicAction{
 		$id=I("id");
 		$db=M("info");
 		$data=array(
-			"sortnum"=>(int)I("sortnum","10"),
+			"sort"=>(int)I("sort","10"),
 			"title"=>$title,
 			"class_id"=>$class_id,
 			"admin_id"=>$this->uid,
@@ -184,7 +188,7 @@ class InfoAction extends BasicAction{
     			"msg"=>base64_encode("信息删除失败")
     			);
 		}
-		U("Index/info",$params,"",true);
+		U("Public/info",$params,"",true);
 	
 	}
 }

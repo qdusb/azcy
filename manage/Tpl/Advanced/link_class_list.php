@@ -94,7 +94,7 @@ if ($id != "")
 				<td>删除</td>
 			</tr>
 			<?
-			$sql = "select id, sortnum, name, haspic from link_class order by sortnum asc";
+			$sql = "select id, sort, name, haspic from link_class order by sort asc";
 			$sql .= " limit " . ($page - 1) * $page_size . ", " . $page_size;
 			$rst = $db->query($sql);
 			while ($row = $db->fetch_array($rst))
@@ -102,7 +102,7 @@ if ($id != "")
 				$css = ($css == "listTr") ? "listAlternatingTr" : "listTr";
 			?>
 				<tr class="<?=$css?>">
-					<td><?=$row["sortnum"]?></td>
+					<td><?=$row["sort"]?></td>
 					<td><a href="<?=$editUrl?>?id=<?=$row["id"]?>"><?=$row["name"]?></a></td>
 					<td style="display:none">
 						<?

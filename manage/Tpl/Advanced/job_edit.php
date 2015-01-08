@@ -23,7 +23,7 @@ $db = new onlyDB($config["db_host"], $config["db_user"], $config["db_pass"], $co
 //提交表单
 if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
-	$sortnum		= (int)$_POST["sortnum"];
+	$sort		= (int)$_POST["sort"];
 	$state			= (int)$_POST["state"];
 	$num			= (string)$_POST["num"];
 	$showForm		= (int)$_POST["showForm"];
@@ -38,11 +38,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 	if (empty($id))
 	{
 		$id = $db->getMax("job", "id") + 1;
-		$sql = "insert into job(id,class_id, sortnum,num, state, showForm, name, email, publishdate, deadline, content,content2) values('$id','$class_id', $sortnum, $state,'$num', $showForm, '$name', '$email', '$publishdate', '$deadline', '$content','$content2')";
+		$sql = "insert into job(id,class_id, sort,num, state, showForm, name, email, publishdate, deadline, content,content2) values('$id','$class_id', $sort, $state,'$num', $showForm, '$name', '$email', '$publishdate', '$deadline', '$content','$content2')";
 	}
 	else
 	{
-		$sql = "update job set class_id='$class_id',sortnum=$sortnum, state=$state,num='$num', showForm=$showForm, name='$name', email='$email', publishdate='$publishdate', deadline='$deadline', content='$content',content2='$content2' where id='$id'";
+		$sql = "update job set class_id='$class_id',sort=$sort, state=$state,num='$num', showForm=$showForm, name='$name', email='$email', publishdate='$publishdate', deadline='$deadline', content='$content',content2='$content2' where id='$id'";
 	}
 	$rst = $db->query($sql);
 	$db->close();
@@ -52,7 +52,7 @@ else
 {
 	if ($id == "")
 	{
-		$sortnum 	= $db->getMax("job", "sortnum") + 10;
+		$sort 	= $db->getMax("job", "sort") + 10;
 		$state		= 1;
 		$showForm	= 1;
 	}
@@ -63,7 +63,7 @@ else
 		if ($row = $db->fetch_array($rst))
 		{
 			$id				= $row["id"];
-			$sortnum		= $row["sortnum"];
+			$sort		= $row["sort"];
 			$state			= $row["state"];
 			$num			= $row["num"];
 			$class_id		= $row["class_id"];
@@ -136,10 +136,10 @@ else
 		<script type="text/javascript">
 			function check(form)
 			{
-				if (form.sortnum.value.match(/\D/))
+				if (form.sort.value.match(/\D/))
 				{
 					alert("请输入合法的序号！");
-					form.sortnum.focus();
+					form.sort.focus();
 					return false;
 				}
 
@@ -167,7 +167,7 @@ else
 				</tr>
 				<tr class="editTr">
 					<td class="editLeftTd">序号</td>
-					<td class="editRightTd"><input type="text" name="sortnum" value="<?=$sortnum?>" size="5" maxlength="5"></td>
+					<td class="editRightTd"><input type="text" name="sort" value="<?=$sort?>" size="5" maxlength="5"></td>
 				</tr>
 				<tr class="editTr">
 					<td class="editLeftTd">状态</td>
@@ -188,7 +188,7 @@ else
 					<td class="editRightTd">
 						<select name="class_id">
 						<?
-						$sql = "select * from job_class  order by sortnum asc";
+						$sql = "select * from job_class  order by sort asc";
 						$rst = $db->query($sql);
 						while ($row = $db->fetch_array($rst))
 						{

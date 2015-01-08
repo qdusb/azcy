@@ -39,7 +39,7 @@
 				  <foreach name="info" item="v">
                     <tr class="listTr">
 						<td><input type="checkbox" id="ids" name="ids[]" value="{$v.id}"></td>
-                       	<td>{$v.sortnum}</td>
+                       	<td>{$v.sort}</td>
 						<td><a href="{:U('Banner/banner_edit',array('id'=>$v['id'],'class_id'=>$class_id))}">{$v.title}</a></td>
                         <td>{$v.width}</td>
                         <td>{$v.height}</td>

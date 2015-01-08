@@ -42,7 +42,7 @@ $editUrl = "banner_edit.php?class_id=$class_id&id=$id";
 //提交表单
 if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
-	$sortnum		= (int)$_POST["sortnum"];
+	$sort		= (int)$_POST["sort"];
 	$title			= htmlspecialchars(trim($_POST["title"]));
 	$url 			= htmlspecialchars(trim($_POST["url"]));
 	$width			= (int)$_POST["width"];
@@ -66,8 +66,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 
 	if ($id < 1)
 	{
-		$sortnum = $db->getMax("banner", "sortnum", "class_id='$class_id'") + 10;
-		$sql = "insert into banner (id, class_id, sortnum, title,content, url, width, height, pic,pic2, state) values(" . ($db->getMax("banner", "id", "") + 1) . ", $class_id, $sortnum, '$title','$content', '$url', $width, $height, '$pic','$pic2', $state)";
+		$sort = $db->getMax("banner", "sort", "class_id='$class_id'") + 10;
+		$sql = "insert into banner (id, class_id, sort, title,content, url, width, height, pic,pic2, state) values(" . ($db->getMax("banner", "id", "") + 1) . ", $class_id, $sort, '$title','$content', '$url', $width, $height, '$pic','$pic2', $state)";
 	}
 	else
 	{
@@ -76,21 +76,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 			$oldPic2		= $db->getTableFieldValue("banner", "pic2", "where id=$id");
 			$oldPic		= $db->getTableFieldValue("banner", "pic", "where id=$id");
 			
-			$sql = "update banner set sortnum=$sortnum, title='$title',content='$content', url='$url', width=$width, height=$height, pic2='$pic2',pic='$pic', state=$state where id=$id";
+			$sql = "update banner set sort=$sort, title='$title',content='$content', url='$url', width=$width, height=$height, pic2='$pic2',pic='$pic', state=$state where id=$id";
 		}
 		else if ((!empty($pic) || $del_pic == 1))
 		{
 			$oldPic		= $db->getTableFieldValue("banner", "pic", "where id=$id");
-			$sql = "update banner set sortnum=$sortnum, title='$title',content='$content', url='$url', width=$width, height=$height, pic='$pic', state=$state where id=$id";
+			$sql = "update banner set sort=$sort, title='$title',content='$content', url='$url', width=$width, height=$height, pic='$pic', state=$state where id=$id";
 		}
 		else if ((!empty($pic2) || $del_pic2 == 1))
 		{
 			$oldPic2		= $db->getTableFieldValue("banner", "pic2", "where id=$id");
-			$sql = "update banner set sortnum=$sortnum, title='$title',content='$content', url='$url', width=$width, height=$height, pic2='$pic2', state=$state where id=$id";
+			$sql = "update banner set sort=$sort, title='$title',content='$content', url='$url', width=$width, height=$height, pic2='$pic2', state=$state where id=$id";
 		}
 		else
 		{
-			$sql = "update banner set sortnum=$sortnum, title='$title',content='$content', url='$url', width=$width, height=$height, state=$state where id=$id";
+			$sql = "update banner set sort=$sort, title='$title',content='$content', url='$url', width=$width, height=$height, state=$state where id=$id";
 		}
 	}
 
@@ -120,16 +120,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 
 if ($id < 1)
 {
-	$sortnum		= $db->getMax("banner", "sortnum", "class_id=$class_id") + 10;
+	$sort		= $db->getMax("banner", "sort", "class_id=$class_id") + 10;
 	$state			= 1;
 }
 else
 {
-	$sql = "select sortnum, title, url, width, height, pic,pic2,content,state from banner where id=$id";
+	$sql = "select sort, title, url, width, height, pic,pic2,content,state from banner where id=$id";
 	$rst = $db->query($sql);
 	if ($row = $db->fetch_array($rst))
 	{
-		$sortnum		= $row["sortnum"];
+		$sort		= $row["sort"];
 		$title			= $row["title"];
 		$url			= $row["url"];
 		$width			= $row["width"];
@@ -183,10 +183,10 @@ else
 		<script>
 			function check(form)
 			{
-				if (form.sortnum.value.match(/\D/))
+				if (form.sort.value.match(/\D/))
 				{
 					alert("请输入合法的序号！");
-					form.sortnum.focus();
+					form.sort.focus();
 					return false;
 				}
 
@@ -234,7 +234,7 @@ else
 				<tr class="editTr">
 					<td class="editLeftTd">排列序号</td>
 					<td class="editRightTd">
-						<input type="text" name="sortnum" value="<?=$sortnum?>" maxlength="10" size="5">
+						<input type="text" name="sort" value="<?=$sort?>" maxlength="10" size="5">
 					</td>
 				</tr>
 				<tr class="editTr">

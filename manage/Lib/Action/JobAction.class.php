@@ -13,7 +13,7 @@ class JobAction extends BasicAdvancedAction{
 		
 		$this->assign("freshURL",U("Job/job_list",$params));
 		
-		$info=$db->order("sortnum desc")->limit(($page_id-1)*$page_size,$page_size)->select();
+		$info=$db->order("sort desc")->limit(($page_id-1)*$page_size,$page_size)->select();
 		$this->assign("info",$info);
 		$this->assign("page_id",$page_id);
 		$this->display("Advanced/job_list");
@@ -39,7 +39,7 @@ class JobAction extends BasicAdvancedAction{
 		}
 		$db=M("job");
 		$data=array(
-		"sortnum"=>I("sortnum","10"),
+		"sort"=>I("sort","10"),
 		"name"=>$name,
 		"state"=>I("state",1),
 		"num"=>I("num"),
@@ -90,7 +90,7 @@ class JobAction extends BasicAdvancedAction{
 		
 		$this->assign("freshURL",U("Job/jobseeker_list",$params));
 		
-		$info=$db->order("sortnum desc")->limit(($page_id-1)*$page_size,$page_size)->select();
+		$info=$db->order("sort desc")->limit(($page_id-1)*$page_size,$page_size)->select();
 		foreach($info as $key=>$v){
 			$job_id=$v['job_id'];
 			$info[$key]['job_name']=M("job")->where("id =$job_id")->getfield("name");

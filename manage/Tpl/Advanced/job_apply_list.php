@@ -97,7 +97,7 @@ if ($id != "")
 				</tr>
 				<?
 				
-				$sql = "select * from job_apply order by sortnum desc";
+				$sql = "select * from job_apply order by sort desc";
 				$sql .= " limit " . ($page - 1) * $page_size . ", " . $page_size;
 				$rst = $db->query($sql);
 				while ($row = $db->fetch_array($rst))
@@ -105,7 +105,7 @@ if ($id != "")
 					$css = ($css == "listTr") ? "listAlternatingTr" : "listTr";
 				?>
 					<tr class="<?=$css?>">
-						<td><?=$row["sortnum"]?></td>
+						<td><?=$row["sort"]?></td>
 						<td><a href="<?=$viewUrl?>&id=<?=$row["id"]?>"><?=$row["name"]?></a></td>
 						<?
 						$sql1 = "select name from job where id=".$row["job_id"];

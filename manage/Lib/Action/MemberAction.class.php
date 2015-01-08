@@ -12,7 +12,7 @@ class MemberAction extends BasicAdvancedAction{
 		$page=page($page_id,$page_num,"Member/member_list",$params);
 		$this->assign("page",$page);
 		$this->assign("freshURL",U("Member/member_list",$params));
-		$info=$db->order("sortnum desc")->limit(($page_id-1)*$page_size,$page_size)->select();
+		$info=$db->order("sort desc")->limit(($page_id-1)*$page_size,$page_size)->select();
 		$this->assign("info",$info);
 		$this->assign("page_id",$page_id);
 		$this->display("Advanced/member_list");
@@ -24,7 +24,7 @@ class MemberAction extends BasicAdvancedAction{
 		if(!empty($id)){
 			$info=$db->where("id={$id}")->find();
 		}else{
-			$info['sortnum']=$db->max("sortnum")+10;
+			$info['sort']=$db->max("sort")+10;
 		}
 		$levels=array(
 			"0"=>"普通用户",
@@ -47,7 +47,7 @@ class MemberAction extends BasicAdvancedAction{
 		}
 		$db=M("member");
 		$data=array(
-			"sortnum"=>I("sortnum"),
+			"sort"=>I("sort"),
 			"user_name"=>$user_name,
 			"level"=>I("level"),
 			"real_name"=>I("real_name"),

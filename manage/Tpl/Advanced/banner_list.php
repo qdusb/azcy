@@ -18,7 +18,7 @@ $db = new onlyDB($config["db_host"], $config["db_user"], $config["db_pass"], $co
 
 if (empty($class_id))
 {
-	$sql = "select id, name, add_deny, delete_deny from banner_class order by sortnum asc limit 1";
+	$sql = "select id, name, add_deny, delete_deny from banner_class order by sort asc limit 1";
 }
 else
 {
@@ -100,7 +100,7 @@ if ($id != "")
 					?>
 					<select name="select_class" onChange="window.location='?class_id=' + this.options[this.selectedIndex].value;">
 						<?
-						$sql = "select id, name from banner_class order by sortnum asc";
+						$sql = "select id, name from banner_class order by sort asc";
 						$rst = $db->query($sql);
 						while ($row = $db->fetch_array($rst))
 						{
@@ -159,7 +159,7 @@ if ($id != "")
                 </tr>
 				<?
 				//列表
-				$sql = "select id, class_id, sortnum, title, url, pic, width, height, state from banner where class_id=$class_id order by sortnum desc";
+				$sql = "select id, class_id, sort, title, url, pic, width, height, state from banner where class_id=$class_id order by sort desc";
                 $sql .= " limit " . ($page - 1) * $page_size . ", " . $page_size;
                 $rst = $db->query($sql);
                 while ($row = $db->fetch_array($rst))
@@ -167,7 +167,7 @@ if ($id != "")
                 	$css = ($css == "listTr") ? "listAlternatingTr" : "listTr";
                 ?>
                     <tr class="<?=$css?>">
-                       	<td><?=$row["sortnum"]?></td>
+                       	<td><?=$row["sort"]?></td>
 						<td><a href="<?=$editUrl?>&id=<?=$row["id"]?>"><?=$row["title"]?></a></td>
                         <td><?=$row["width"]?></td>
                         <td><?=$row["height"]?></td>

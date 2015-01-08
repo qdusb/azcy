@@ -27,7 +27,7 @@
 			</tr>
 			<foreach name="info" item="v">
 			<tr class="listTr">
-				<td>{$v.sortnum}</td>
+				<td>{$v.sort}</td>
 				<td><a href="{:U('Category/manage_edit',array('id'=>$v['id']))}">{$v.name}</a></td>
 				<td><a href="{:C('UPLOAD_PATH_FROM_ADMIN').$v.pic}" target="_blank">图片</a></td>
 				<td>

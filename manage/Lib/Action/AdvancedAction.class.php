@@ -5,7 +5,7 @@ class AdvancedAction extends BasicAdvancedAction{
         $this->display('Public:error');
 	}
 	public function advanced_list(){
-		$info=M("advanced")->order("sortnum asc")->select();
+		$info=M("advanced")->order("sort asc")->select();
 		$this->assign("info",$info);
 		$this->display();
 	}
@@ -17,7 +17,7 @@ class AdvancedAction extends BasicAdvancedAction{
 		}else{
 			$info=array(
 			"id"=>$db->max("id")+1,
-			"sortnum"=>$db->max("sortnum")+10,
+			"sort"=>$db->max("sort")+10,
 			"state"=>1,
 			"model"=>"Anvanced"
 			);
@@ -51,7 +51,7 @@ class AdvancedAction extends BasicAdvancedAction{
 		$db=M("advanced");
 		$data=array(
 		"id"=>$id,
-		"sortnum"=>I("sortnum"),
+		"sort"=>I("sort"),
 		"name"=>I("name"),
 		"action"=>I("action"),
 		"model"=>I("model"),

@@ -22,12 +22,12 @@ $db = new onlyDB($config["db_host"], $config["db_user"], $config["db_pass"], $co
 
 if ($id != "")
 {
-	$sql = "select ja.id, ja.name, ja.sortnum, ja.sex, ja.age, ja.major, ja.graduate_time, ja.college, ja.phone, ja.email, ja.resumes, ja.appraise, ja.create_time, ja.state, j.name as job_name from job_apply ja inner join job j on ja.job_id=j.id where ja.id='$id'";
+	$sql = "select ja.id, ja.name, ja.sort, ja.sex, ja.age, ja.major, ja.graduate_time, ja.college, ja.phone, ja.email, ja.resumes, ja.appraise, ja.create_time, ja.state, j.name as job_name from job_apply ja inner join job j on ja.job_id=j.id where ja.id='$id'";
 	$rst = $db->query($sql);
 	if ($row = $db->fetch_array($rst))
 	{
 		$id				= $row["id"];
-		$sortnum		= $row["sortnum"];
+		$sort		= $row["sort"];
 		$name			= $row["name"];
 		$job_name		= $row["job_name"];
 		$sex			= $row["sex"];
@@ -83,7 +83,7 @@ if ($id != "")
 				</tr>
 				<tr class="editTr">
 					<td class="editLeftTd">序号</td>
-					<td class="editRightTd"><?=$sortnum?></td>
+					<td class="editRightTd"><?=$sort?></td>
 				</tr>
 				<tr class="editTr">
 					<td class="editLeftTd">应聘职位</td>

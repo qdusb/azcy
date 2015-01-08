@@ -23,7 +23,7 @@ class AdverAction extends BasicAdvancedAction{
 		if(!empty($id)){
 			$info=$db->where("id={$id}")->find();
 		}else{
-			$info['sortnum']=$db->max("sortnum")+10;
+			$info['sort']=$db->max("sort")+10;
 		}
 		$mods=array(
 			"popup"=>"弹出广告",
@@ -51,7 +51,7 @@ class AdverAction extends BasicAdvancedAction{
 		
 		$db=M("adver");
 		$data=array(
-			"sortnum"=>I("sortnum"),
+			"sort"=>I("sort"),
 			"title"=>$title,
 			"state"=>I("state"),
 			"mode"=>I("mode","popup"),

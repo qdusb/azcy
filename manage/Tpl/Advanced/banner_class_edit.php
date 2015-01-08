@@ -20,7 +20,7 @@ $db = new onlyDB($config["db_host"], $config["db_user"], $config["db_pass"], $co
 //提交表单
 if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
-	$sortnum		= (int)$_POST["sortnum"];
+	$sort		= (int)$_POST["sort"];
 	$name			= htmlspecialchars(trim($_POST["name"]));
 	$add_deny		= (int)$_POST["add_deny"];
 	$delete_deny	= (int)$_POST["delete_deny"];
@@ -28,11 +28,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 	if (empty($id))
 	{
 		$id = $db->getMax("banner_class", "id") + 1;
-		$sql = "insert into banner_class(id, sortnum, name, add_deny, delete_deny) values('$id', $sortnum, '$name', $add_deny, $delete_deny)";
+		$sql = "insert into banner_class(id, sort, name, add_deny, delete_deny) values('$id', $sort, '$name', $add_deny, $delete_deny)";
 	}
 	else
 	{
-		$sql = "update banner_class set sortnum=$sortnum, name='$name', add_deny=$add_deny, delete_deny=$delete_deny where id='$id'";
+		$sql = "update banner_class set sort=$sort, name='$name', add_deny=$add_deny, delete_deny=$delete_deny where id='$id'";
 	}
 	$rst = $db->query($sql);
 	$db->close();
@@ -42,18 +42,18 @@ else
 {
 	if ($id == "")
 	{
-		$sortnum		= $db->getMax("banner_class", "sortnum") + 10;
+		$sort		= $db->getMax("banner_class", "sort") + 10;
 		$add_deny		= 0;
 		$delete_deny	= 0;
 	}
 	else
 	{
-		$sql = "select id, sortnum, name, add_deny, delete_deny from banner_class where id='$id'";
+		$sql = "select id, sort, name, add_deny, delete_deny from banner_class where id='$id'";
 		$rst = $db->query($sql);
 		if ($row = $db->fetch_array($rst))
 		{
 			$id				= $row["id"];
-			$sortnum		= $row["sortnum"];
+			$sort		= $row["sort"];
 			$name			= $row["name"];
 			$add_deny		= $row["add_deny"];
 			$delete_deny	= $row["delete_deny"];
@@ -76,10 +76,10 @@ else
 		<script type="text/javascript">
 			function check(form)
 			{
-				if (form.sortnum.value == "" || form.sortnum.value.match(/\D/))
+				if (form.sort.value == "" || form.sort.value.match(/\D/))
 				{
 					alert("请输入合法的序号！");
-					form.sortnum.focus();
+					form.sort.focus();
 					return false;
 				}
 
@@ -113,7 +113,7 @@ else
 				</tr>
 				<tr class="editTr">
 					<td class="editLeftTd">排列序号</td>
-					<td class="editRightTd"><input type="text" name="sortnum" value="<?=$sortnum?>" size="10" maxlength="5"></td>
+					<td class="editRightTd"><input type="text" name="sort" value="<?=$sort?>" size="10" maxlength="5"></td>
 				</tr>
 				<tr class="editTr">
 					<td class="editLeftTd">分类名称</td>

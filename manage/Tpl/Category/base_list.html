@@ -36,7 +36,7 @@
 			<foreach name="classes" item="v">
 			<tr class="listTr">
 				<td>{$v.id}</td>
-				<td>{$v.sortnum}</td>
+				<td>{$v.sort}</td>
 				<td><a href="{:U('Category/base_edit',array('id'=>$v['id']))}">{$v.name}</a></td>
 				<td>
 					<switch name="v.info_state" >

@@ -18,7 +18,7 @@ class BannerAction extends BasicAdvancedAction{
 			$info=$db->where("id={$id}")->find();
 		}else{
 			$info=array(
-			"sortnum"=>$db->max("sortnum")+10,
+			"sort"=>$db->max("sort")+10,
 			);
 		}
 		$this->assign("info",$info);
@@ -33,7 +33,7 @@ class BannerAction extends BasicAdvancedAction{
 		}
 			$db=M("banner_class");
 		$data=array(
-		"sortnum"=>I("sortnum","10"),
+		"sort"=>I("sort","10"),
 		"name"=>$name,
 		"add_deny"=>I("add_deny",1),
 		"delete_deny"=>I("delete_deny",1),
@@ -68,7 +68,7 @@ class BannerAction extends BasicAdvancedAction{
 	/*Banner 管理*/
 	public function banner_list(){
 		$db=M("banner");
-		$banner_class=M("banner_class")->order("sortnum asc")->select();
+		$banner_class=M("banner_class")->order("sort asc")->select();
 		if(count($banner_class)<=0){
 			$params=array(
     			"msg"=>base64_encode("Banner分类尚未建立，请先建立链接分类"),
@@ -87,7 +87,7 @@ class BannerAction extends BasicAdvancedAction{
 		$freshURL=U("Banner/banner_list",array("class_id"=>$class_id));
 		$addURL=U("Banner/banner_edit",array("class_id"=>$class_id));
 
-		$info=$db->where("class_id={$class_id}")->order("sortnum asc")->select();
+		$info=$db->where("class_id={$class_id}")->order("sort asc")->select();
 
 		$this->assign("class_id",$class_id);
 		$this->assign("freshURL",$freshURL);
@@ -107,7 +107,7 @@ class BannerAction extends BasicAdvancedAction{
 		if(!empty($id)){
 			$info=$db->where("id={$id}")->find();
 		}else{
-			$info['sortnum']=$db->where("class_id={$class_id}")->max("sortnum")+10;
+			$info['sort']=$db->where("class_id={$class_id}")->max("sort")+10;
 			$info['state']=1;
 		}
 		$returnURL=U("Banner/banner_list",array("class_id"=>$class_id));
@@ -132,7 +132,7 @@ class BannerAction extends BasicAdvancedAction{
 		}
 		$db=M("banner");
 		$data=array(
-			"sortnum"=>I("sortnum"),
+			"sort"=>I("sort"),
 			"state"=>I("state",1),
 			"title"=>$title,
 			"url"=>I("url"),

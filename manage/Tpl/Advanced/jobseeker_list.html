@@ -33,7 +33,7 @@
 				 <foreach name="info" item="v">
 					<tr class="listTr">
 						<td><input type="checkbox" id="ids" name="ids[]" value="{$v.id}"></td>
-						<td>{$v.sortnum}</td>
+						<td>{$v.sort}</td>
 						
 						<td><a href="{:U('Job/jobseeker_edit',array('id'=>$v['id']))}">{$v.name}</a></td>
 						<td>{$v.job_name}</td>

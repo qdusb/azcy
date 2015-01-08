@@ -2,7 +2,7 @@
 class CategoryAction extends BasicAdvancedAction{
 	public function base_list(){
 		$db=M("info_class");
-		$classes=$db->where("id like '___'")->order("sortnum asc")->select();
+		$classes=$db->where("id like '___'")->order("sort asc")->select();
 		$this->assign("classes",$classes);
 		
 		$this->display("base_list");
@@ -16,7 +16,7 @@ class CategoryAction extends BasicAdvancedAction{
 			$count=$db->where("id like '___'")->count("id");
 			$info=array(
 			"id"=>$count+101,
-			"sortnum"=>($count+1)*10,
+			"sort"=>($count+1)*10,
             "state"=>1
 			);
 		}
@@ -44,7 +44,7 @@ class CategoryAction extends BasicAdvancedAction{
 		$db=M("info_class");
 		$data=array(
 		"id"=>$id,
-		"sortnum"=>I("sortnum"),
+		"sort"=>I("sort"),
 		"name"=>I("name"),
 		"en_name"=>I("en_name"),
 		"content"=>I("content"),
@@ -113,7 +113,7 @@ class CategoryAction extends BasicAdvancedAction{
 		$db=M("info_class");
 		$base=$db->where("id={$id}")->find();
 
-		$info=$db->where("id like '{$id}___'")->order('sortnum asc')->select();
+		$info=$db->where("id like '{$id}___'")->order('sort asc')->select();
 
 		$this->assign("freshURL",U("Category/manage_list",array("id"=>$id)));
 		$this->assign("addURL",U("Category/manage_edit",array("pid"=>$id)));
@@ -138,7 +138,7 @@ class CategoryAction extends BasicAdvancedAction{
 		if(!empty($id)){
 			$info=$db->where("id={$id}")->find();
 		}else{
-			$info['sortnum']=$db->where("id like '{$pid}___'")->max("sortnum")+10;
+			$info['sort']=$db->where("id like '{$pid}___'")->max("sort")+10;
             $info['state']=1;
 		}
 		$info['pid']=$pid;
@@ -174,7 +174,7 @@ class CategoryAction extends BasicAdvancedAction{
 		}
 		$data=array(
 			"id"=>$id,
-			"sortnum"=>I("sortnum"),
+			"sort"=>I("sort"),
 			"name"=>$name,
 			"en_name"=>I("en_name"),
 			//"model"=>I("model"),

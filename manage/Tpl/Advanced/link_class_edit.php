@@ -20,18 +20,18 @@ $db = new onlyDB($config["db_host"], $config["db_user"], $config["db_pass"], $co
 //提交表单
 if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
-	$sortnum		= (int)$_POST["sortnum"];
+	$sort		= (int)$_POST["sort"];
 	$name			= htmlspecialchars(trim($_POST["name"]));
 	$haspic			= (int)$_POST["haspic"];
 
 	if (empty($id))
 	{
 		$id = $db->getMax("link_class", "id") + 1;
-		$sql = "insert into link_class(id, sortnum, name, haspic) values('$id', $sortnum, '$name', $haspic)";
+		$sql = "insert into link_class(id, sort, name, haspic) values('$id', $sort, '$name', $haspic)";
 	}
 	else
 	{
-		$sql = "update link_class set sortnum=$sortnum, name='$name', haspic=$haspic where id='$id'";
+		$sql = "update link_class set sort=$sort, name='$name', haspic=$haspic where id='$id'";
 	}
 	$rst = $db->query($sql);
 	$db->close();
@@ -41,17 +41,17 @@ else
 {
 	if ($id == "")
 	{
-		$sortnum 	= $db->getMax("link_class", "sortnum") + 10;
+		$sort 	= $db->getMax("link_class", "sort") + 10;
 		$haspic		= 1;
 	}
 	else
 	{
-		$sql = "select id, sortnum, name, haspic from link_class where id='$id'";
+		$sql = "select id, sort, name, haspic from link_class where id='$id'";
 		$rst = $db->query($sql);
 		if ($row = $db->fetch_array($rst))
 		{
 			$id				= $row["id"];
-			$sortnum		= $row["sortnum"];
+			$sort		= $row["sort"];
 			$name			= $row["name"];
 			$haspic			= $row["haspic"];
 		}
@@ -73,10 +73,10 @@ else
 		<script type="text/javascript">
 			function check(form)
 			{
-				if (form.sortnum.value == "" || form.sortnum.value.match(/\D/))
+				if (form.sort.value == "" || form.sort.value.match(/\D/))
 				{
 					alert("请输入合法的序号！");
-					form.sortnum.focus();
+					form.sort.focus();
 					return false;
 				}
 
@@ -110,7 +110,7 @@ else
 				</tr>
 				<tr class="editTr">
 					<td class="editLeftTd">排列序号</td>
-					<td class="editRightTd"><input type="text" name="sortnum" value="<?=$sortnum?>" size="10" maxlength="5"></td>
+					<td class="editRightTd"><input type="text" name="sort" value="<?=$sort?>" size="10" maxlength="5"></td>
 				</tr>
 				<tr class="editTr">
 					<td class="editLeftTd">分类名称</td>

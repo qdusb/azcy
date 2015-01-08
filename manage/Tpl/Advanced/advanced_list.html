@@ -27,7 +27,7 @@
 			<foreach name="info" item="v">
 			<tr class="listTr">
 				<td>{$v.id}</td>
-				<td>{$v.sortnum}</td>
+				<td>{$v.sort}</td>
 				<td><a href="{:U('Advanced/advanced_edit',array('id'=>$v['id']))}">{$v.name}</a></td>
 				<td>{$v.default_file}</td>
 				<td><if condition="$v.state eq 0"><font color=#FF6600>不显示</font><else/>显示</if></td>
