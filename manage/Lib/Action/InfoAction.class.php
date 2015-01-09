@@ -115,7 +115,7 @@ class InfoAction extends BasicAction{
 			$params=array(
     			"msg"=>base64_encode("标题不能为空")
     			);
-			U("Index/info",$params,"",true);
+			U("System/info",$params,"",true);
 			exit;
 		}
 		$returnURL=U("Info/infolist",$params);
@@ -172,7 +172,7 @@ class InfoAction extends BasicAction{
 			$params=array(
     			"msg"=>base64_encode("信息保存失败")
     			);
-			U("Index/info",$params,"",true);
+			U("System/info",$params,"",true);
 		}	
 	}
 	public function search(){
@@ -210,7 +210,7 @@ class InfoAction extends BasicAction{
     			"msg"=>base64_encode("信息删除失败")
     			);
 		}
-		U("Public/info",$params,"",true);
+		U("System/info",$params,"",true);
 	
 	}
 }

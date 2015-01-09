@@ -22,7 +22,7 @@ class JobAction extends BasicAdvancedAction{
 		$page_id=I("page_id","1");
 		$id=I("id");
 		if(empty($id)){
-			U("Index/info",array("msg"=>base64_encode("非法操作")),"",true);
+			U("System/info",array("msg"=>base64_encode("非法操作")),"",true);
 			exit;
 		}
 		$info=M("job")->where("id={$id}")->find();
@@ -34,7 +34,7 @@ class JobAction extends BasicAdvancedAction{
 		$id=I("id");
 		$name=I("name");
 		if(empty($name)){
-			U("Index/info",array("msg"=>base64_encode("职位名称不能为空")),"",true);
+			U("System/info",array("msg"=>base64_encode("职位名称不能为空")),"",true);
 			exit;
 		}
 		$db=M("job");
@@ -59,14 +59,14 @@ class JobAction extends BasicAdvancedAction{
 		if($rst!==false){
 			U("Job/job_list","","",true);
 		}else{
-			U("Index/info",array("msg"=>base64_encode("编辑/新增失败")),"",true);
+			U("System/info",array("msg"=>base64_encode("编辑/新增失败")),"",true);
 
 		}
 	}
 	public function job_delete(){
 		$id=I("id");
 		if(empty($id)){
-			U("Index/info",array("msg"=>base64_encode("非法操作")),"",true);
+			U("System/info",array("msg"=>base64_encode("非法操作")),"",true);
 			exit;
 		}
 		$db=M("job");
@@ -74,7 +74,7 @@ class JobAction extends BasicAdvancedAction{
 		if($rst!==false){
 			U("Job/job_list","","",true);
 		}else{
-			U("Index/info",array("msg"=>base64_encode("删除失败")),"",true);
+			U("System/info",array("msg"=>base64_encode("删除失败")),"",true);
 		}
 	}
 	/*应聘人员*/
@@ -103,7 +103,7 @@ class JobAction extends BasicAdvancedAction{
 		$page_id=I("page_id","1");
 		$id=I("id");
 		if(empty($id)){
-			U("Index/info",array("msg"=>base64_encode("非法操作")),"",true);
+			U("System/info",array("msg"=>base64_encode("非法操作")),"",true);
 			exit;
 		}
 		$info=M("job_apply")->where("id={$id}")->find();
@@ -129,7 +129,7 @@ class JobAction extends BasicAdvancedAction{
 			$params=array(
     			"msg"=>base64_encode("非法操作"),
     			);
-			U("Index/info",$params,"",true);
+			U("System/info",$params,"",true);
 			exit;
 		}
 		$db=M("job_apply");
@@ -146,7 +146,7 @@ class JobAction extends BasicAdvancedAction{
     			"msg"=>base64_encode("删除失败")
     			);
 		}
-		U("Index/info",$params,"",true);
+		U("System/info",$params,"",true);
 	}
 }
 ?>

@@ -37,7 +37,7 @@ class AdvancedAction extends BasicAdvancedAction{
 		}else{
 			$msg=base64_encode("删除失败");
 		}
-		U("Index/info",array("msg"=>$msg),"",true);
+		U("System/info",array("msg"=>$msg),"",true);
 	}
 	public function advanced_update(){
 		$id=I("id");
@@ -45,7 +45,7 @@ class AdvancedAction extends BasicAdvancedAction{
 			$params=array(
     			"msg"=>base64_encode("非法操作"),
     			);
-			U("Index/info",$params,"",true);
+			U("System/info",$params,"",true);
 			exit;
 		}
 		$db=M("advanced");
@@ -72,7 +72,7 @@ class AdvancedAction extends BasicAdvancedAction{
 			$params=array(
     			"msg"=>base64_encode("编辑/新增失败"),
     			);
-			U("Index/info",$params,"",true);
+			U("System/info",$params,"",true);
 		}
 	}
 	/*基本配置*/
@@ -100,7 +100,7 @@ class AdvancedAction extends BasicAdvancedAction{
 		}else{
 			$msg=base64_encode("编辑失败");
 		}
-		U("Index/info",array("msg"=>$msg),"",true);
+		U("System/info",array("msg"=>$msg),"",true);
 	}
 }
 ?>

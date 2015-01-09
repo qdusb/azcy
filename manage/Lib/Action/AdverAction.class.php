@@ -46,7 +46,7 @@ class AdverAction extends BasicAdvancedAction{
 		$title=I("title");
 		if(empty($title)){
 			$msg=base64_encode("标题不能为空");
-			U("Index/info",array("msg"=>$msg),"",true);
+			U("System/info",array("msg"=>$msg),"",true);
 		}
 		
 		$db=M("adver");
@@ -71,7 +71,7 @@ class AdverAction extends BasicAdvancedAction{
 			U("Adver/adver_list",array("page_id"=>$page_id),"",true);
 		}else{
 			$msg=base64_encode("新增/编辑失败");
-			U("Index/info",array("msg"=>$msg),"",true);
+			U("System/info",array("msg"=>$msg),"",true);
 		}
 	}
 	public function adver_delete (){
@@ -85,7 +85,7 @@ class AdverAction extends BasicAdvancedAction{
 			$params=array(
     			"msg"=>base64_encode("非法操作"),
     			);
-			U("Index/info",$params,"",true);
+			U("System/info",$params,"",true);
 			exit;
 		}
 		$db=M("adver");
@@ -102,7 +102,7 @@ class AdverAction extends BasicAdvancedAction{
     			"msg"=>base64_encode("删除失败")
     			);
 		}
-		U("Index/info",$params,"",true);
+		U("System/info",$params,"",true);
 	}
 }
 ?>

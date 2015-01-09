@@ -1,10 +1,36 @@
 <?php
 function getUpload(){
-     import('ORG.Net.UploadFile');
+    import('ORG.Net.UploadFile');
     $data_folder=date("Ymd");
     $upload = new UploadFile();
     $upload->maxSize            = C("IMAGE_SIZE");
-    $upload->allowExts          = explode(',', 'jpg,gif,png,jpeg,zip,ppt,doc,docx,xml,xmls');
+    $upload->allowExts          = explode(',', 'jpg,gif,png,jpeg,zip,ppt,doc,docx,xls,xlms');
+    $upload->savePath           = C("UPLOAD_PATH").$data_folder."/";
+    $upload->thumbRemoveOrigin  = false;
+    return $upload; 
+}
+function deleteFile($file){
+	if(file_exists($file)){
+		$rst=@unlink ($file); 
+	}
+	return $rst;
+}
+function getImgUpload(){
+    import('ORG.Net.UploadFile');
+    $data_folder=date("Ymd");
+    $upload = new UploadFile();
+    $upload->maxSize            = C("IMAGE_SIZE");
+    $upload->allowExts          = explode(',', 'jpg,gif,png,jpeg');
+    $upload->savePath           = C("UPLOAD_PATH").$data_folder."/";
+    $upload->thumbRemoveOrigin  = false;
+    return $upload; 
+}
+function getAnnexUpload(){
+    import('ORG.Net.UploadFile');
+    $data_folder=date("Ymd");
+    $upload = new UploadFile();
+    $upload->maxSize            = C("IMAGE_SIZE");
+    $upload->allowExts          = explode(',', 'zip,ppt,doc,docx,xls,xlms,pdf');
     $upload->savePath           = C("UPLOAD_PATH").$data_folder."/";
     $upload->thumbRemoveOrigin  = false;
     return $upload; 
@@ -17,6 +43,9 @@ function info($msg){
 	exit;
 }
 function getLinkURL($class_id){
+	/*if($class_id=="101101"){
+
+	}*/
 	return U("Info/infolist",array("class_id"=>$class_id));
 }
 /*分页*/

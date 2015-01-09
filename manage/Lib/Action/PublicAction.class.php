@@ -1,19 +1,9 @@
 <?php
 class PublicAction extends BasicAction{
-    public function info(){
-        $msg=I("msg","","base64_decode");
-        $url=I("url","javascript:history.back(-1);","base64_decode");
-        $this->assign("msg",$msg);
-        $this->assign("url",$url);
-        $this->display("Public/info");
-    }
-    public function loginout(){
-		session(null);
-		U("Login/index","","",true);
-	}
+    
     public function menu(){
-        /*栏目*/
     	$db=M("info_class");
+
     	$menus=array();
     	$bases=$db->where("id like '___' and state = 1")->order("sort asc")->select();
     	foreach($bases as $key=>$base){
@@ -28,7 +18,6 @@ class PublicAction extends BasicAction{
 
         $this->assign("menus",$menus);
 
-        /*高级管理*/
         $db=M("advanced");
         $advanced=$db->where("state=1")->order("sort asc")->select();
     	
@@ -37,8 +26,7 @@ class PublicAction extends BasicAction{
             $val['model']=empty($val['model'])?"Advanced":$val['model'];
             $advanced[$key]["url"]=U( $val['model']."/".$val['action']);
         }
-        $grade  =session("ADMIN_GRADE");
-        $this->assign("grade",$grade);
+        $this->assign("grade",session("ADMIN_GRADE"));
         $this->assign("advanced",$advanced);
     	$this->display("Public/menu");
     }

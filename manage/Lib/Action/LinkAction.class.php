@@ -24,7 +24,7 @@ class LinkAction extends BasicAdvancedAction{
 		$id=I("id");
 		$name=I("name");
 		if(empty($name)){
-			U("Index/info",array("msg"=>base64_encode("链接分类名称不能为空")),"",true);
+			U("System/info",array("msg"=>base64_encode("链接分类名称不能为空")),"",true);
 			exit;
 		}
 			$db=M("link_class");
@@ -43,14 +43,14 @@ class LinkAction extends BasicAdvancedAction{
 		if($rst!==false){
 			U("Link/link_class_list","","",true);
 		}else{
-			U("Index/info",array("msg"=>base64_encode("编辑/新增失败")),"",true);
+			U("System/info",array("msg"=>base64_encode("编辑/新增失败")),"",true);
 
 		}
 	}
 	public function link_class_delete(){
 		$id=I("id");
 		if(empty($id)){
-			U("Index/info",array("msg"=>base64_encode("非法操作")),"",true);
+			U("System/info",array("msg"=>base64_encode("非法操作")),"",true);
 			exit;
 		}
 		$db=M("link_class");
@@ -58,7 +58,7 @@ class LinkAction extends BasicAdvancedAction{
 		if($rst!==false){
 			U("Link/link_class_list","","",true);
 		}else{
-			U("Index/info",array("msg"=>base64_encode("删除失败")),"",true);
+			U("System/info",array("msg"=>base64_encode("删除失败")),"",true);
 		}
 	}
 	/*链接管理*/
@@ -71,14 +71,14 @@ class LinkAction extends BasicAdvancedAction{
     			"msg"=>base64_encode("链接分类尚未建立，请先建立链接分类"),
     			"url"=>base64_encode(U("Link/link_class_list"))
     			);
-			U("Index/info",$params,"",true);
+			U("System/info",$params,"",true);
 		}
 		$class_id=I("class_id",$link_class[0]['id']);
 		if(empty($class_id)){
 			$params=array(
     			"msg"=>base64_encode("非法操作")
     			);
-			U("Index/info",$params,"",true);
+			U("System/info",$params,"",true);
 			exit;
 		}
 		$freshURL=U("Link/link_list",array("class_id"=>$class_id));
@@ -97,7 +97,7 @@ class LinkAction extends BasicAdvancedAction{
 		$id=I("id");
 		$class_id=I("class_id");
 		if(empty($class_id)){
-			U("Index/info",array("msg"=>base64_encode("非法操作")),"",true);
+			U("System/info",array("msg"=>base64_encode("非法操作")),"",true);
 			exit;
 		}
 		$db=M("link");
@@ -121,7 +121,7 @@ class LinkAction extends BasicAdvancedAction{
 		$id=I("id");
 		$class_id=I("class_id");
 		if(empty($class_id)){
-			U("Index/info",array("msg"=>base64_encode("非法操作")),"",true);
+			U("System/info",array("msg"=>base64_encode("非法操作")),"",true);
 			exit;
 		}
 		$db=M("link");
@@ -142,7 +142,7 @@ class LinkAction extends BasicAdvancedAction{
 		if($rst!==false){
 			U("Link/link_list",array("class_id"=>$class_id),"",true);
 		}else{
-			U("Index/info",array("msg"=>base64_encode("新增/编辑失败")),"",true);
+			U("System/info",array("msg"=>base64_encode("新增/编辑失败")),"",true);
 			exit;
 		}
 	}
@@ -154,7 +154,7 @@ class LinkAction extends BasicAdvancedAction{
 		$class_id=I("class_id");
 		$ids=I("ids");
 		if(empty($ids)){
-			U("Index/info",array("msg"=>base64_encode("非法操作")),"",true);
+			U("System/info",array("msg"=>base64_encode("非法操作")),"",true);
 			exit;
 		}
 		$db=M("link");
@@ -171,7 +171,7 @@ class LinkAction extends BasicAdvancedAction{
     			"msg"=>base64_encode("删除失败")
     			);
 		}
-		U("Index/info",$params,"",true);
+		U("System/info",$params,"",true);
 	}
 }
 ?>

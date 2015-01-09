@@ -43,7 +43,7 @@ class MemberAction extends BasicAdvancedAction{
 		$user_name=I("user_name");
 		if(empty($user_name)){
 			$msg=base64_encode("用户名不能为空");
-			U("Index/info",array("msg"=>$msg),"",true);
+			U("System/info",array("msg"=>$msg),"",true);
 		}
 		$db=M("member");
 		$data=array(
@@ -64,7 +64,7 @@ class MemberAction extends BasicAdvancedAction{
 			$password=I("password");
 			if(empty($password)){
 				$msg=base64_encode("密码不能为空");
-				U("Index/info",array("msg"=>$msg),"",true);
+				U("System/info",array("msg"=>$msg),"",true);
 			}
 			$data['password']=$password;
 			$rst=$db->add($data);
@@ -76,7 +76,7 @@ class MemberAction extends BasicAdvancedAction{
 			U("Member/member_list",array("page_id"=>$page_id),"",true);
 		}else{
 			$msg=base64_encode("新增/编辑失败");
-			U("Index/info",array("msg"=>$msg),"",true);
+			U("System/info",array("msg"=>$msg),"",true);
 		}
 	}
 	public function member_delete(){
@@ -90,7 +90,7 @@ class MemberAction extends BasicAdvancedAction{
 			$params=array(
     			"msg"=>base64_encode("非法操作"),
     			);
-			U("Index/info",$params,"",true);
+			U("System/info",$params,"",true);
 			exit;
 		}
 		$db=M("member");
@@ -107,7 +107,7 @@ class MemberAction extends BasicAdvancedAction{
     			"msg"=>base64_encode("删除失败")
     			);
 		}
-		U("Index/info",$params,"",true);
+		U("System/info",$params,"",true);
 	}
 	public function member_down(){
 		

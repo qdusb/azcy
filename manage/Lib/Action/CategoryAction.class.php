@@ -38,7 +38,7 @@ class CategoryAction extends BasicAdvancedAction{
     			"msg"=>base64_encode("非法操作"),
     			"url"=>base64_encode(U("Category/base_list"))
     			);
-			U("Index/info",$params,"",true);
+			U("System/info",$params,"",true);
 			exit;
 		}
 		$db=M("info_class");
@@ -76,7 +76,7 @@ class CategoryAction extends BasicAdvancedAction{
 		if($rst!==false){
 			U("Category/base_list","","",true);
 		}else{
-			U("Index/info",array("msg"=>base64_encode("编辑/新增失败")),"",true);
+			U("System/info",array("msg"=>base64_encode("编辑/新增失败")),"",true);
 		}
 	}
 	public function class_delete(){
@@ -103,12 +103,12 @@ class CategoryAction extends BasicAdvancedAction{
 				}	
 			}
 		}
-		U("Index/info",array("msg"=>$msg),"",true);
+		U("System/info",array("msg"=>$msg),"",true);
 	}
 	public function manage_list(){
 		$id=I("id");
 		if(empty($id)){
-			U("Index/info",array("msg"=>base64_encode("非法操作")),"",true);
+			U("System/info",array("msg"=>base64_encode("非法操作")),"",true);
 		}
 		$db=M("info_class");
 		$base=$db->where("id={$id}")->find();
@@ -163,7 +163,7 @@ class CategoryAction extends BasicAdvancedAction{
 		$pid=I("pid");
 		$name=I("name");
 		if(empty($name)){
-			U("Index/info",array("msg"=>base64_encode("分类名称不能为空")),"",true);
+			U("System/info",array("msg"=>base64_encode("分类名称不能为空")),"",true);
 			exit;
 		}
 		$db=M("info_class");
@@ -193,7 +193,7 @@ class CategoryAction extends BasicAdvancedAction{
 		if($rst!==false){
 			U("Category/manage_list",array("id"=>$pid),"",true);
 		}else{
-			U("Index/info",array("msg"=>base64_encode("编辑/新增失败")),"",true);
+			U("System/info",array("msg"=>base64_encode("编辑/新增失败")),"",true);
 		}
 	}
 }

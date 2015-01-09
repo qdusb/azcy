@@ -23,7 +23,6 @@ function isDateTime(str)
 	return true;
 }
 
-
 //检查参数是否是时间
 function isTime(str)
 {
@@ -279,7 +278,6 @@ function file(id, tableName, idName, fileName, filenameName)
 	var p = window.open(str, "file", "width=550, height=300, scrollbars=1, left=100, top=100");
 }
 
-// 新加函数  Cole (程启明) 2008/09/18  15:00
 
 function managePic(table, id)
 {

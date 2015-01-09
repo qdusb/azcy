@@ -61,22 +61,22 @@ class AdminAction extends BasicAdvancedAction{
 		//"advanced_id"=>I("advanced_id")
 		);
 		if(empty($name)){
-			U("Index/info",array("msg"=>base64_encode("用户名不能为空")),"","true");
+			U("System/info",array("msg"=>base64_encode("用户名不能为空")),"","true");
 			exit;
 		}
 		if(empty($id)){
 			if(empty($pass)||empty($pass2)){
-				U("Index/info",array("msg"=>base64_encode("密码不能为空")),"","true");
+				U("System/info",array("msg"=>base64_encode("密码不能为空")),"","true");
 				exit;
 			}
 		}
 		if(!empty($pass)||!empty($pass2)){
 			if($pass!=$pass2){
-				U("Index/info",array("msg"=>base64_encode("两次输入的密码不一致")),"","true");
+				U("System/info",array("msg"=>base64_encode("两次输入的密码不一致")),"","true");
 				exit;
 			}
 			if(strlen($pass)<8){
-				U("Index/info",array("msg"=>base64_encode("密码不能小于8位")),"","true");
+				U("System/info",array("msg"=>base64_encode("密码不能小于8位")),"","true");
 				exit;
 			}
 			$data['pass']=md5($pass);
@@ -91,7 +91,7 @@ class AdminAction extends BasicAdvancedAction{
 		if($rst!==false){
 			U("Admin/admin_list","","",true);
 		}else{
-			U("Index/info",array("msg"=>base64_encode("保存错误")),"","true");
+			U("System/info",array("msg"=>base64_encode("保存错误")),"","true");
 			exit;
 		}
 	}
@@ -106,22 +106,22 @@ class AdminAction extends BasicAdvancedAction{
 		$newpass=I("newpass","","trim");
 		$newpass2=I("newpass2","","trim");
 		if(empty($oldpass)||empty($newpass)||empty($newpass2)){
-			U("Index/info",array("msg"=>base64_encode("密码不能为空")),"","true");
+			U("System/info",array("msg"=>base64_encode("密码不能为空")),"","true");
 		}
 		if($oldpass==$newpass){
-			U("Index/info",array("msg"=>base64_encode("新旧密码不能一致")),"","true");
+			U("System/info",array("msg"=>base64_encode("新旧密码不能一致")),"","true");
 		}
 		if(strlen($newpass)<8){
-			U("Index/info",array("msg"=>base64_encode("密码不能小于8位")),"","true");
+			U("System/info",array("msg"=>base64_encode("密码不能小于8位")),"","true");
 			exit;
 		}
 		if($newpass2!=$newpass){
-			U("Index/info",array("msg"=>base64_encode("两次输入的密码不一致")),"","true");
+			U("System/info",array("msg"=>base64_encode("两次输入的密码不一致")),"","true");
 		}
 		$uid    =session("ADMIN_ID");
         $info=M("admin")->where("id={$uid}")->find();
         if(md5($oldpass)!=$info["pass"]){
-			U("Index/info",array("msg"=>base64_encode("原始密码不正确")),"","true");
+			U("System/info",array("msg"=>base64_encode("原始密码不正确")),"","true");
 		}
 		$data=array(
 			"pass"=>md5($newpass),
@@ -129,10 +129,9 @@ class AdminAction extends BasicAdvancedAction{
 			);
 		$rst=M("admin")->where("id={$uid}")->save($data);
 		if($rst!==false){
-			U("Index/info",array("msg"=>base64_encode("密码修改成功")),"","true");
+			U("System/info",array("msg"=>base64_encode("密码修改成功")),"","true");
 		}else{
-			U("Index/info",array("msg"=>base64_encode("密码修改失败")),"","true");
+			U("System/info",array("msg"=>base64_encode("密码修改失败")),"","true");
 		}
 	}
 }
-?>

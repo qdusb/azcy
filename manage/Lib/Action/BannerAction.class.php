@@ -28,7 +28,7 @@ class BannerAction extends BasicAdvancedAction{
 		$id=I("id");
 		$name=I("name");
 		if(empty($name)){
-			U("Index/info",array("msg"=>base64_encode("Banner分类名称不能为空")),"",true);
+			U("System/info",array("msg"=>base64_encode("Banner分类名称不能为空")),"",true);
 			exit;
 		}
 			$db=M("banner_class");
@@ -48,13 +48,13 @@ class BannerAction extends BasicAdvancedAction{
 		if($rst!==false){
 			U("Banner/banner_class_list","","",true);
 		}else{
-			U("Index/info",array("msg"=>base64_encode("编辑/新增失败")),"",true);
+			U("System/info",array("msg"=>base64_encode("编辑/新增失败")),"",true);
 		}
 	}
 	public function banner_class_delete(){
 		$id=I("id");
 		if(empty($id)){
-			U("Index/info",array("msg"=>base64_encode("非法操作")),"",true);
+			U("System/info",array("msg"=>base64_encode("非法操作")),"",true);
 			exit;
 		}
 		$db=M("banner_class");
@@ -62,7 +62,7 @@ class BannerAction extends BasicAdvancedAction{
 		if($rst!==false){
 			U("Banner/banner_class_list","","",true);
 		}else{
-			U("Index/info",array("msg"=>base64_encode("删除失败")),"",true);
+			U("System/info",array("msg"=>base64_encode("删除失败")),"",true);
 		}
 	}
 	/*Banner 管理*/
@@ -74,14 +74,14 @@ class BannerAction extends BasicAdvancedAction{
     			"msg"=>base64_encode("Banner分类尚未建立，请先建立链接分类"),
     			"url"=>base64_encode(U("Banner/banner_class_list"))
     			);
-			U("Index/info",$params,"",true);
+			U("System/info",$params,"",true);
 		}
 		$class_id=I("class_id",$banner_class[0]['id']);
 		if(empty($class_id)){
 			$params=array(
     			"msg"=>base64_encode("非法操作")
     			);
-			U("Index/info",$params,"",true);
+			U("System/info",$params,"",true);
 			exit;
 		}
 		$freshURL=U("Banner/banner_list",array("class_id"=>$class_id));
@@ -100,7 +100,7 @@ class BannerAction extends BasicAdvancedAction{
 		$id=I("id");
 		$class_id=I("class_id");
 		if(empty($class_id)){
-			U("Index/info",array("msg"=>base64_encode("非法操作")),"",true);
+			U("System/info",array("msg"=>base64_encode("非法操作")),"",true);
 			exit;
 		}
 		$db=M("banner");
@@ -123,11 +123,11 @@ class BannerAction extends BasicAdvancedAction{
 		$class_id=I("class_id");
 		$title=I("title");
 		if(empty($class_id)){
-			U("Index/info",array("msg"=>base64_encode("非法操作")),"",true);
+			U("System/info",array("msg"=>base64_encode("非法操作")),"",true);
 			exit;
 		}
 		if(empty($title)){
-			U("Index/info",array("msg"=>base64_encode("Banner名称不能为空")),"",true);
+			U("System/info",array("msg"=>base64_encode("Banner名称不能为空")),"",true);
 			exit;
 		}
 		$db=M("banner");
@@ -151,7 +151,7 @@ class BannerAction extends BasicAdvancedAction{
 		if($rst!==false){
 			U("Banner/banner_list",array("class_id"=>$class_id),"",true);
 		}else{
-			U("Index/info",array("msg"=>base64_encode("新增/编辑失败")),"",true);
+			U("System/info",array("msg"=>base64_encode("新增/编辑失败")),"",true);
 			exit;
 		}
 	}
@@ -163,7 +163,7 @@ class BannerAction extends BasicAdvancedAction{
 		$class_id=I("class_id");
 		$ids=I("ids");
 		if(empty($ids)){
-			U("Index/info",array("msg"=>base64_encode("非法操作")),"",true);
+			U("System/info",array("msg"=>base64_encode("非法操作")),"",true);
 			exit;
 		}
 		$db=M("banner");
@@ -180,7 +180,7 @@ class BannerAction extends BasicAdvancedAction{
     			"msg"=>base64_encode("删除失败")
     			);
 		}
-		U("Index/info",$params,"",true);
+		U("System/info",$params,"",true);
 	}
 }
 ?>

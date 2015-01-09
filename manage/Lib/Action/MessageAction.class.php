@@ -22,7 +22,7 @@ class MessageAction extends BasicAdvancedAction{
 		$page_id=I("page_id","1");
 		$id=I("id");
 		if(empty($id)){
-			U("Index/info",array("msg"=>base64_encode("非法操作")),"",true);
+			U("System/info",array("msg"=>base64_encode("非法操作")),"",true);
 			exit;
 		}
 		$info=M("message")->where("id={$id}")->find();
@@ -40,7 +40,7 @@ class MessageAction extends BasicAdvancedAction{
 			$params=array(
     			"msg"=>base64_encode("非法操作"),
     			);
-			U("Index/info",$params,"",true);
+			U("System/info",$params,"",true);
 			exit;
 		}
 		$db=M("message");
@@ -54,7 +54,7 @@ class MessageAction extends BasicAdvancedAction{
 			U("Message/message_list",array("page_id"=>$page_id),"",true);
 		}else{
 			$msg=base64_encode("编辑失败");
-			U("Index/info",array("msg"=>$msg),"",true);
+			U("System/info",array("msg"=>$msg),"",true);
 		}
 	}
 	public function message_delete(){
@@ -68,7 +68,7 @@ class MessageAction extends BasicAdvancedAction{
 			$params=array(
     			"msg"=>base64_encode("非法操作"),
     			);
-			U("Index/info",$params,"",true);
+			U("System/info",$params,"",true);
 			exit;
 		}
 		$db=M("message");
@@ -85,7 +85,7 @@ class MessageAction extends BasicAdvancedAction{
     			"msg"=>base64_encode("信息删除失败")
     			);
 		}
-		U("Index/info",$params,"",true);
+		U("System/info",$params,"",true);
 	}
 }
 ?>

