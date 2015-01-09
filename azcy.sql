@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2014-12-31 08:28:25
+-- Generation Time: 2015-01-09 09:25:37
 -- 服务器版本： 5.6.17
 -- PHP Version: 5.5.12
 
@@ -114,7 +114,7 @@ CREATE TABLE IF NOT EXISTS `admin_login` (
   PRIMARY KEY (`id`),
   KEY `admin_id` (`admin_id`),
   KEY `id` (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=15 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=26 ;
 
 --
 -- 转存表中的数据 `admin_login`
@@ -134,7 +134,18 @@ INSERT INTO `admin_login` (`id`, `admin_id`, `login_time`, `login_ip`) VALUES
 (11, 1, '2014-12-31 12:23:04', '127.0.0.1'),
 (12, 1, '2014-12-31 12:23:05', '127.0.0.1'),
 (13, 1, '2014-12-31 12:23:11', '127.0.0.1'),
-(14, 1, '2014-12-31 12:23:35', '127.0.0.1');
+(14, 1, '2014-12-31 12:23:35', '127.0.0.1'),
+(15, 1, '2015-01-04 09:04:24', '127.0.0.1'),
+(16, 1, '2015-01-04 09:04:27', '127.0.0.1'),
+(17, 1, '2015-01-04 09:04:31', '127.0.0.1'),
+(18, 1, '2015-01-04 09:04:48', '127.0.0.1'),
+(19, 1, '2015-01-04 09:04:54', '127.0.0.1'),
+(20, 1, '2015-01-04 09:08:32', '127.0.0.1'),
+(21, 1, '2015-01-04 09:08:50', '127.0.0.1'),
+(22, 1, '2015-01-04 09:09:00', '127.0.0.1'),
+(23, 1, '2015-01-04 09:16:15', '127.0.0.1'),
+(24, 1, '2015-01-08 09:57:30', '127.0.0.1'),
+(25, 1, '2015-01-09 14:59:00', '127.0.0.1');
 
 -- --------------------------------------------------------
 
@@ -373,6 +384,7 @@ CREATE TABLE IF NOT EXISTS `info` (
   `level` int(11) DEFAULT NULL,
   `admin_id` int(10) unsigned DEFAULT NULL,
   `class_id` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `o_class_id` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   `author` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `source` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `website` varchar(300) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -394,60 +406,8 @@ CREATE TABLE IF NOT EXISTS `info` (
 -- 转存表中的数据 `info`
 --
 
-INSERT INTO `info` (`id`, `sort`, `title`, `level`, `admin_id`, `class_id`, `author`, `source`, `website`, `pic`, `annex`, `keyword`, `intro`, `content`, `views`, `create_time`, `modify_time`, `state`) VALUES
-(39, 390, '名称_西递故事_作者_许家栋_地点_安徽省黄山市黟县西递3391', NULL, NULL, '101101', NULL, NULL, NULL, '../upload/2014-06/140264935152550500.jpg', NULL, NULL, NULL, '<img src="http://localhost/azcy/include/../upload/2014-06/140264935152419800.jpg" />', NULL, '2014-06-13 08:49:11', NULL, 1),
-(38, 380, '名称_西递故事_作者_许家栋_地点_安徽省黄山市黟县西递2838', NULL, NULL, '101101', NULL, NULL, NULL, '../upload/2014-06/140264935122827400.jpg', NULL, NULL, NULL, '<img src="http://localhost/azcy/include/../upload/2014-06/140264935122718100.jpg" />', NULL, '2014-06-13 08:49:11', NULL, 1),
-(37, 370, '名称_西递故事_作者_许家栋_地点_安徽省黄山市黟县西递1881', NULL, NULL, '101101', NULL, NULL, NULL, '../upload/2014-06/140264935092549900.jpg', NULL, NULL, NULL, '<img src="http://localhost/azcy/include/../upload/2014-06/140264935092416300.jpg" />', NULL, '2014-06-13 08:49:10', NULL, 1),
-(1, 10, '名称_春风_作者_余平_地点_安庆1081', NULL, NULL, '101101', NULL, NULL, NULL, '2014-06/140264933938950400.jpg', NULL, NULL, NULL, '<img src="http://localhost/azcy/include/../upload/2014-06/140264933938950400.jpg" />', NULL, '2014-06-13 08:48:59', NULL, 1),
-(2, 20, '名称_淙潭廊桥_作者_徐德安_地点_安徽休宁6997', NULL, NULL, '101101', NULL, NULL, NULL, '2014-06/140264933946650800.jpg', NULL, NULL, NULL, '<img src="http://localhost/azcy/include/../upload/2014-06/140264933946650800.jpg" />', NULL, '2014-06-13 08:48:59', NULL, 1),
-(3, 30, '名称_古祠遗风_作者_梅光_地点_黄山歙县西昌8826', NULL, NULL, '101101', NULL, NULL, NULL, '../upload/2014-06/140264933949142700.jpg', NULL, NULL, NULL, '<img src="http://localhost/azcy/include/../upload/2014-06/140264933949050900.jpg" />', NULL, '2014-06-13 08:48:59', NULL, 1),
-(4, 40, '名称_古宅结构_作者_许家栋_地点_安徽省黄山市徽州区呈坎4917', NULL, NULL, '101101', NULL, NULL, NULL, '../upload/2014-06/140264933988653000.jpg', NULL, NULL, NULL, '<img src="http://localhost/azcy/include/../upload/2014-06/140264933988553100.jpg" />', NULL, '2014-06-13 08:48:59', NULL, 1),
-(5, 50, '名称_宏村夜色_作者_许家栋_地点_安徽省黄山市黟县宏村4564', NULL, NULL, '101101', NULL, NULL, NULL, '../upload/2014-06/140264934015563900.jpg', NULL, NULL, NULL, '<img src="http://localhost/azcy/include/../upload/2014-06/140264934015454800.jpg" />', NULL, '2014-06-13 08:49:00', NULL, 1),
-(6, 60, '名称_宏村之晨_作者_许家栋_地点_安徽省黄山市黟县宏村3916', NULL, NULL, '101101', NULL, NULL, NULL, '../upload/2014-06/140264934045763200.jpg', NULL, NULL, NULL, '<img src="http://localhost/azcy/include/../upload/2014-06/140264934045656400.jpg" />', NULL, '2014-06-13 08:49:00', NULL, 1),
-(7, 70, '名称_花海人家_作者_许家栋_地点_安徽省黄山市黟县柯村1895', NULL, NULL, '101101', NULL, NULL, NULL, '../upload/2014-06/140264934075588200.jpg', NULL, NULL, NULL, '<img src="http://localhost/azcy/include/../upload/2014-06/140264934075458100.jpg" />', NULL, '2014-06-13 08:49:00', NULL, 1),
-(8, 80, '名称_徽州木雕（组图）_作者_卢小华_地点_绩溪县1132', NULL, NULL, '101101', NULL, NULL, NULL, '../upload/2014-06/140264934105588500.jpg', NULL, NULL, NULL, '<img src="http://localhost/azcy/include/../upload/2014-06/140264934105459800.jpg" />', NULL, '2014-06-13 08:49:01', NULL, 1),
-(9, 90, '名称_徽州木雕（组图）_作者_卢小华_地点_绩溪县1352', NULL, NULL, '101101', NULL, NULL, NULL, '../upload/2014-06/140264934135598400.jpg', NULL, NULL, NULL, '<img src="http://localhost/azcy/include/../upload/2014-06/140264934135461600.jpg" />', NULL, '2014-06-13 08:49:01', NULL, 1),
-(10, 100, '名称_徽州木雕（组图）_作者_卢小华_地点_绩溪县9318', NULL, NULL, '101101', NULL, NULL, NULL, '../upload/2014-06/140264934165599000.jpg', NULL, NULL, NULL, '<img src="http://localhost/azcy/include/../upload/2014-06/140264934165463200.jpg" />', NULL, '2014-06-13 08:49:01', NULL, 1),
-(11, 110, '名称_徽州人家（组照）_作者_梅光_地点_安徽黄山卢村1484', NULL, NULL, '101101', NULL, NULL, NULL, '../upload/2014-06/140264934195858600.jpg', NULL, NULL, NULL, '<img src="http://localhost/azcy/include/../upload/2014-06/140264934195765100.jpg" />', NULL, '2014-06-13 08:49:01', NULL, 1),
-(12, 120, '名称_徽州人家（组照）_作者_梅光_地点_安徽黄山卢村2536', NULL, NULL, '101101', NULL, NULL, NULL, '../upload/2014-06/140264934232878300.jpg', NULL, NULL, NULL, '<img src="http://localhost/azcy/include/../upload/2014-06/140264934232767200.jpg" />', NULL, '2014-06-13 08:49:02', NULL, 1),
-(13, 130, '名称_徽州人家（组照）_作者_梅光_地点_安徽黄山卢村4120', NULL, NULL, '101101', NULL, NULL, NULL, '../upload/2014-06/140264934276116200.jpg', NULL, NULL, NULL, '<img src="http://localhost/azcy/include/../upload/2014-06/140264934275969600.jpg" />', NULL, '2014-06-13 08:49:02', NULL, 1),
-(14, 140, '名称_徽州人家（组照）_作者_梅光_地点_安徽黄山卢村4123', NULL, NULL, '101101', NULL, NULL, NULL, '../upload/2014-06/140264934312696100.jpg', NULL, NULL, NULL, '<img src="http://localhost/azcy/include/../upload/2014-06/140264934312571700.jpg" />', NULL, '2014-06-13 08:49:03', NULL, 1),
-(15, 150, '名称_徽州人家（组照）_作者_梅光_地点_安徽黄山卢村4141', NULL, NULL, '101101', NULL, NULL, NULL, '../upload/2014-06/140264934350223900.jpg', NULL, NULL, NULL, '<img src="http://localhost/azcy/include/../upload/2014-06/140264934350073900.jpg" />', NULL, '2014-06-13 08:49:03', NULL, 1),
-(16, 160, '名称_徽州人家（组照）_作者_梅光_地点_安徽黄山卢村4640', NULL, NULL, '101101', NULL, NULL, NULL, '../upload/2014-06/140264934390748200.jpg', NULL, NULL, NULL, '<img src="http://localhost/azcy/include/../upload/2014-06/140264934390576200.jpg" />', NULL, '2014-06-13 08:49:03', NULL, 1),
-(17, 170, '名称_徽州人家（组照）_作者_梅光_地点_安徽黄山卢村5099', NULL, NULL, '101101', NULL, NULL, NULL, '../upload/2014-06/140264934428912700.jpg', NULL, NULL, NULL, '<img src="http://localhost/azcy/include/../upload/2014-06/140264934428778400.jpg" />', NULL, '2014-06-13 08:49:04', NULL, 1),
-(18, 180, '名称_徽州人家（组照）_作者_梅光_地点_安徽黄山卢村8152', NULL, NULL, '101101', NULL, NULL, NULL, '../upload/2014-06/140264934465929100.jpg', NULL, NULL, NULL, '<img src="http://localhost/azcy/include/../upload/2014-06/140264934465780400.jpg" />', NULL, '2014-06-13 08:49:04', NULL, 1),
-(19, 190, '名称_镜像南湖_作者_掌莉琼_地点_宏村8430', NULL, NULL, '101101', NULL, NULL, NULL, '../upload/2014-06/140264934542179300.jpg', NULL, NULL, NULL, '<img src="http://localhost/azcy/include/../upload/2014-06/140264934542084800.jpg" />', NULL, '2014-06-13 08:49:05', NULL, 1),
-(20, 200, '名称_老屋故事_作者_许家栋_地点_安徽省黄山市黟县宏村镇卢村9261', NULL, NULL, '101101', NULL, NULL, NULL, '../upload/2014-06/140264934602934500.jpg', NULL, NULL, NULL, '<img src="http://localhost/azcy/include/../upload/2014-06/140264934602788300.jpg" />', NULL, '2014-06-13 08:49:06', NULL, 1),
-(21, 210, '名称_老宅宴席_作者_许家栋_地点_安徽省黄山市黟县宏村镇宏苑饭店6061', NULL, NULL, '101101', NULL, NULL, NULL, '../upload/2014-06/140264934632733900.jpg', NULL, NULL, NULL, '<img src="http://localhost/azcy/include/../upload/2014-06/140264934632590100.jpg" />', NULL, '2014-06-13 08:49:06', NULL, 1),
-(22, 220, '名称_门环_作者_许家栋_地点_安徽省黄山市黟县宏村镇卢村1141', NULL, NULL, '101101', NULL, NULL, NULL, '../upload/2014-06/140264934662710600.jpg', NULL, NULL, NULL, '<img src="http://localhost/azcy/include/../upload/2014-06/140264934662591800.jpg" />', NULL, '2014-06-13 08:49:06', NULL, 1),
-(23, 230, '名称_梦里水乡_作者_许家栋_地点_安徽省黄山市黟县宏村7217', NULL, NULL, '101101', NULL, NULL, NULL, '../upload/2014-06/140264934693053400.jpg', NULL, NULL, NULL, '<img src="http://localhost/azcy/include/../upload/2014-06/140264934692893500.jpg" />', NULL, '2014-06-13 08:49:06', NULL, 1),
-(24, 240, '名称_南湖古桥_作者_掌莉琼_地点_宏村5174', NULL, NULL, '101101', NULL, NULL, NULL, '../upload/2014-06/140264934731297400.jpg', NULL, NULL, NULL, '<img src="http://localhost/azcy/include/../upload/2014-06/140264934731195600.jpg" />', NULL, '2014-06-13 08:49:07', NULL, 1),
-(25, 250, '名称_千年寿州古城_作者_熊志祥_地点_安徽淮南寿县3192', NULL, NULL, '101101', NULL, NULL, NULL, '../upload/2014-06/140264934792641000.jpg', NULL, NULL, NULL, '<img src="http://localhost/azcy/include/../upload/2014-06/140264934792499200.jpg" />', NULL, '2014-06-13 08:49:07', NULL, 1),
-(26, 260, '名称_千年寿州古城_作者_熊志祥_地点_安徽淮南寿县4120', NULL, NULL, '101101', NULL, NULL, NULL, '2014-06/140264934836201600.jpg', NULL, NULL, NULL, '<img src="http://localhost/azcy/include/../upload/2014-06/140264934836201600.jpg" />', NULL, '2014-06-13 08:49:08', NULL, 1),
-(27, 270, '名称_千年寿州古城_作者_熊志祥_地点_安徽淮南寿县4891', NULL, NULL, '101101', NULL, NULL, NULL, '../upload/2014-06/140264934838718800.jpg', NULL, NULL, NULL, '<img src="http://localhost/azcy/include/../upload/2014-06/140264934838601700.jpg" />', NULL, '2014-06-13 08:49:08', NULL, 1),
-(28, 280, '名称_千年寿州古城_作者_熊志祥_地点_安徽淮南寿县5659', NULL, NULL, '101101', NULL, NULL, NULL, '../upload/2014-06/140264934875637000.jpg', NULL, NULL, NULL, '<img src="http://localhost/azcy/include/../upload/2014-06/140264934875503900.jpg" />', NULL, '2014-06-13 08:49:08', NULL, 1),
-(29, 290, '名称_千年寿州古城_作者_熊志祥_地点_安徽淮南寿县9012', NULL, NULL, '101101', NULL, NULL, NULL, '2014-06/140264934912606000.jpg', NULL, NULL, NULL, '<img src="http://localhost/azcy/include/../upload/2014-06/140264934912606000.jpg" />', NULL, '2014-06-13 08:49:09', NULL, 1),
-(30, 300, '名称_寿春瓮城墙_作者_梅光_地点_寿县5407', NULL, NULL, '101101', NULL, NULL, NULL, '../upload/2014-06/140264934915415400.jpg', NULL, NULL, NULL, '<img src="http://localhost/azcy/include/../upload/2014-06/140264934915306200.jpg" />', NULL, '2014-06-13 08:49:09', NULL, 1),
-(31, 310, '名称_岁月留痕_作者_徐德安_地点_安徽黟县卢村3550', NULL, NULL, '101101', NULL, NULL, NULL, '../upload/2014-06/140264934952534800.jpg', NULL, NULL, NULL, '<img src="http://localhost/azcy/include/../upload/2014-06/140264934952408400.jpg" />', NULL, '2014-06-13 08:49:09', NULL, 1),
-(32, 320, '名称_塔川春色_作者_徐德安_地点_黄山塔川3597', NULL, NULL, '101101', NULL, NULL, NULL, '2014-06/140264934982510100.jpg', NULL, NULL, NULL, '<img src="http://localhost/azcy/include/../upload/2014-06/140264934982510100.jpg" />', NULL, '2014-06-13 08:49:09', NULL, 1),
-(33, 330, '名称_塔川春色_作者_徐德安_地点_黄山塔川7246', NULL, NULL, '101101', NULL, NULL, NULL, '2014-06/140264934985510200.jpg', NULL, NULL, NULL, '<img src="http://localhost/azcy/include/../upload/2014-06/140264934985510200.jpg" />', NULL, '2014-06-13 08:49:09', NULL, 1),
-(34, 340, '名称_塔川徽韵_作者_许家栋_地点_安徽黟县塔川8739', NULL, NULL, '101101', NULL, NULL, NULL, '../upload/2014-06/140264934991246900.jpg', NULL, NULL, NULL, '<img src="http://localhost/azcy/include/../upload/2014-06/140264934991110500.jpg" />', NULL, '2014-06-13 08:49:09', NULL, 1),
-(35, 350, '名称_塔川秋色_作者_许家栋_地点_安徽黟县塔川3973', NULL, NULL, '101101', NULL, NULL, NULL, '../upload/2014-06/140264935031562200.jpg', NULL, NULL, NULL, '<img src="http://localhost/azcy/include/../upload/2014-06/140264935031412800.jpg" />', NULL, '2014-06-13 08:49:10', NULL, 1),
-(36, 360, '名称_夕照西递_作者_许家栋_地点_安徽省黄山市黟县西递7209', NULL, NULL, '101101', NULL, NULL, NULL, '../upload/2014-06/140264935062659200.jpg', NULL, NULL, NULL, '<img src="http://localhost/azcy/include/../upload/2014-06/140264935062514700.jpg" />', NULL, '2014-06-13 08:49:10', NULL, 1),
-(40, 400, '名称_西递故事_作者_许家栋_地点_安徽省黄山市黟县西递4099', NULL, NULL, '101101', NULL, NULL, NULL, '../upload/2014-06/140264935182830500.jpg', NULL, NULL, NULL, '<img src="http://localhost/azcy/include/../upload/2014-06/140264935182721400.jpg" />', NULL, '2014-06-13 08:49:11', NULL, 1),
-(41, 410, '名称_西递故事_作者_许家栋_地点_安徽省黄山市黟县西递4540', NULL, NULL, '101101', NULL, NULL, NULL, '2014-06/140264935212623200.jpg', NULL, NULL, NULL, '<img src="http://localhost/azcy/include/../upload/2014-06/140264935212623200.jpg" />', NULL, '2014-06-13 08:49:12', NULL, 1),
-(42, 420, '名称_西递故事_作者_许家栋_地点_安徽省黄山市黟县西递7293', NULL, NULL, '101101', NULL, NULL, NULL, '../upload/2014-06/140264935215435200.jpg', NULL, NULL, NULL, '<img src="http://localhost/azcy/include/../upload/2014-06/140264935215323300.jpg" />', NULL, '2014-06-13 08:49:12', NULL, 1),
-(43, 430, '名称_西递故事_作者_许家栋_地点_安徽省黄山市黟县西递7848', NULL, NULL, '101101', NULL, NULL, NULL, '2014-06/140264935253125500.jpg', NULL, NULL, NULL, '<img src="http://localhost/azcy/include/../upload/2014-06/140264935253125500.jpg" />', NULL, '2014-06-13 08:49:12', NULL, 1),
-(44, 440, '名称_西递故事_作者_许家栋_地点_安徽省黄山市黟县西递8200', NULL, NULL, '101101', NULL, NULL, NULL, '../upload/2014-06/140264935255341300.jpg', NULL, NULL, NULL, '<img src="http://localhost/azcy/include/../upload/2014-06/140264935255225600.jpg" />', NULL, '2014-06-13 08:49:12', NULL, 1),
-(45, 450, '名称_新安江廊桥古韵_作者_掌莉琼_地点_黄山屯溪新安江畔8174', NULL, NULL, '101101', NULL, NULL, NULL, '../upload/2014-06/140264935282220800.jpg', NULL, NULL, NULL, '<img src="http://localhost/azcy/include/../upload/2014-06/140264935282127100.jpg" />', NULL, '2014-06-13 08:49:12', NULL, 1),
-(46, 460, '名称_阳产土楼_作者_梅光_地点_歙县深渡阳产3923', NULL, NULL, '101101', NULL, NULL, NULL, '../upload/2014-06/140264935323096500.jpg', NULL, NULL, NULL, '<img src="http://localhost/azcy/include/../upload/2014-06/140264935322929400.jpg" />', NULL, '2014-06-13 08:49:13', NULL, 1),
-(47, 470, '名称_阳产土楼_作者_梅光_地点_歙县深渡阳产4477', NULL, NULL, '101101', NULL, NULL, NULL, '../upload/2014-06/140264935375342600.jpg', NULL, NULL, NULL, '<img src="http://localhost/azcy/include/../upload/2014-06/140264935375232400.jpg" />', NULL, '2014-06-13 08:49:13', NULL, 1),
-(48, 480, '名称_阳产土楼_作者_梅光_地点_歙县深渡阳产5964', 3, 1, '101101', '', '', '', '&lt;img src=&quot;/upload/image/20141231/20141231064749_50841.jpg&quot; alt=&quot;&quot; /&gt;', NULL, '', '', '&lt;img src=&quot;/upload/image/20141231/20141231064536_48932.jpg&quot; alt=&quot;&quot; /&gt;', 0, '2014-06-13 08:49:14', '0000-00-00 00:00:00', 1),
-(49, 10, '联系我们', 0, 0, '106101', '', '', '', '', '', '', '', '<p>\r\n	安振产业投资集团\r\n</p>\r\n<p>\r\n	电话：021-5111-3643\r\n</p>\r\n<p>\r\n	传真：021-5111-3654\r\n</p>\r\n<p>\r\n	邮箱：isao.yoshida@ifst.com.cn\r\n</p>\r\n<p>\r\n	地址:上海市中山西路933号虹桥银城大厦26层2601-2608室(200051)\r\n</p>', 0, '2014-06-16 00:57:09', '2014-06-16 01:00:44', 1),
-(50, 10, '马鞍山信谊公司2014年一季度扭亏为盈', 0, 0, '104101', '', '', '', '2014-06/140288183943921500.jpg', '', '', '', '今年一季度，信谊公司在安徽天成投资公司的全力支持下,积极联系新客户，开拓新业务,与芜湖天地电子科技有限公司建立了业务往来。芜湖天地公司主要从事同轴电缆、太阳能热水器的生产，太阳能热水器年产量达35万台，是省内知名的生产太阳能热水器的企业，并得到当地政府的大力支持。由于太阳能热水器所有钢板为专用钢板，有一定技术含量，公司全体员工积极配合、查找厂家、比对价格、寻找质优价廉的供应商，争取利润的最大化。公司前期主要向其供应太阳能热水器外桶专用冷轧彩涂钢薄板和内筒用冷轧不锈钢薄板。随着双方合作的加深，未来该公司还将向我公司采购太阳能热水器支架用冷轧镀锌钢板等。合作前景较好，预期将成为公司今年主要利润增长点。 &nbsp; &nbsp;一季度信谊公司预计实现营业收入290.88万元,营业成本268.71万，盈利水平显著上升，实现利润总额约10万元。按照目前的发展势头，信谊公司将再接再励，争取二季度利润总额迈上一个新台阶。', 1, '2014-06-16 01:10:52', '2014-06-16 01:23:59', 1),
-(51, 20, '天成公司参加华安证券2013年度股东大会', 0, 0, '104101', '', '', '', '', '', '', '', '3月14日上午，华安证券股份有限公司2013年度股东大会在公司28楼会议室顺利召开并圆满完成各项议程。16家股东单位的股东代表及部分董事、监事出席会议，公司管理层相关人员列席会议。天成公司作为股东代表也出席了此次会议。　　会议由华安证券股份有限公司李工董事长主持。与会股东代表审议了董事会工作报告、监事会工作报告、财务预决算报告、利润分配方案等共计12项议案。各项议案在提交股东大会表决前，均已经过董事会或监事会事先审议通过。与会股东代表围绕上述议案进行了讨论，对向会议提交的各项议案表示一致赞同。　　华安证券股份有限公司李工董事长就股东代表们关心的公开发行上市、业务发展规划问题进行了解答和说明。他指出，公司取得的成绩，离不开各股东单位和董、监事长久以来的支持和理解，2014年公司上下将围绕股东单位的要求和期待，扎实推进发行上市，大力拓宽融资渠道，不断提升业务能力，继续开展管理改革，力争实现股东利益的最大化。李工表示，公司将继续探索与股东单位业务合作的机会，在财务指标和业务结构上为公开发行上市奠定更加坚实的基础。　　与会股东代表对公司过去一年的工作表示满意，并表示将继续支持、配合华安证券的业务发展和重点工作。', 0, '2014-06-16 01:11:51', '2014-06-16 01:12:12', 1),
-(52, 30, '马鞍山农村商业银行召开2014年股东年会', 0, 0, '104101', '', '', '', '', '', '', '', '3月5日下午，马鞍山农商银行2014年股东年会在总部二楼会议室召开，安振公司出席参加了会议。会议由马鞍山农商行董事长孙晓主持。人民银行市中心支行，马鞍山银监分局代表列席会议。会议邀请律师事务所律师予以见证。 &nbsp; &nbsp; &nbsp;参会股东对马鞍山农商银行一年来取得的各项经营成绩表示满意，对马鞍山农商银行新一年的发展战略目标表示充分肯定。大会审议通过了《马鞍山农商银行2013年度董事会工作报告》、《马鞍山农商银行2013年度监事会工作报告》以及财务预、决算方案等议案。', 0, '2014-06-16 01:12:13', '2014-06-16 01:12:27', 1),
-(53, 10, '证券投资相关概念', 0, 0, '103101', '', '', '', '2014-06/140288529339077000.jpg', '', '', '', '<p>\r\n	证券投资(investment in securities)是指投资者（法人或自然人）购买股票、债券、基金券等有价证券以及这些有价证券的衍生品，以获取红利、利息及资本利得的投资行为和投资过程，是间接投资的重要形式。\r\n</p>\r\n<p>\r\n	证券投资具有如下一些特点：\r\n</p>\r\n<p>\r\n	1．证券投资具有高度的“市场力”；\r\n</p>\r\n<p>\r\n	2．证券投资是对预期会带来收益的有价证券的风险投资；\r\n</p>\r\n<p>\r\n	3．投资和投机是证券投资活动中不可缺少的两种行为；\r\n</p>\r\n<p>\r\n	4．二级市场的证券投资不会增加社会资本总量，而是在持有者之间进行再分配。\r\n</p>\r\n<p>\r\n	证券投资主要由三个要素构成：收益、风险和时间。\r\n</p>\r\n<p>\r\n	证券投资工具指在投资活动中以书面证明所有权或债权债务关系的凭证，是一种具有法律效力的合法金融契约。\r\n</p>\r\n<p>\r\n	所谓证券投资关系是指证券投资全过程中所涉及的各个主体。证券投资关系主要由三方面构成：发行者、中介人和投资者。\r\n</p>', 0, '2014-06-16 02:01:40', '2014-06-16 02:21:33', 1);
+INSERT INTO `info` (`id`, `sort`, `title`, `level`, `admin_id`, `class_id`, `o_class_id`, `author`, `source`, `website`, `pic`, `annex`, `keyword`, `intro`, `content`, `views`, `create_time`, `modify_time`, `state`) VALUES
+(2, 10, '2014春季旅游', 0, 1, '101101', NULL, '', '', '', '20150108/54ae22189ec4c.jpg', '20150108/54ae2238309d1.docx', '', '', '', 0, '2015-01-08 10:46:52', '2015-01-08 14:22:48', 1);
 
 -- --------------------------------------------------------
 
